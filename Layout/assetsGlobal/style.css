@@ -64,9 +64,16 @@ h1, h2, h3, h4, h5, h6 {
     border-spacing: 0;
     position: relative;
 }
-@media (max-width: 1760px) {
+@media (max-width: 1460px) {
+    .container {
+        max-width: 1366px;
+        padding: 0 45px;
+    }
+}
+@media (max-width: 768px) {
     .container {
         max-width: 100%;
+        padding: 0 12px;
     }
 }
 
@@ -86,6 +93,24 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
     background-color: var(--main-gray--lighter);
     flex-shrink: 0;
+}
+
+.header-adaptive {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .header {
+        justify-content: flex-start;
+    }
+    .header-adaptive {
+        display: flex;
+    }
+
+    .header__logo,
+    .header__basket {
+        display: none;
+    }
 }
 
 /* Small Basket */
@@ -109,12 +134,8 @@ h1, h2, h3, h4, h5, h6 {
     text-decoration: none;
 }
 
-.small-basket-btn:hover {
-
-}
-
 .small-basket-btn:hover .small-basket__price {
-    color: var(--main-gray--light);
+    color: var(--text-icon-gray--darker);
 }
 
 .small-basket__quantity {
@@ -140,6 +161,14 @@ h1, h2, h3, h4, h5, h6 {
 .small-basket__price {
     font-weight: 600;
     font-size: 11px;
-    line-height: 130%;
+    line-height: 50%;
     color: var(--states-error--darker);
+}
+
+.small-basket__icon svg path {
+    fill: var(--states-error--darker);
+}
+
+.small-basket-btn:hover svg path {
+    fill: var(--text-icon-gray--darker);
 }

@@ -15,6 +15,9 @@
 <div class="container">
     <header>
         <div class="header">
+            <div class="header-adaptive">
+                Корзина
+            </div>
             <a href="/" class="header__logo">
                 <img src="/assets/icons/logo.svg" alt="Logo">
             </a>
