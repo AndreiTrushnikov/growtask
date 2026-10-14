@@ -1,0 +1,40 @@
+@font-face {
+    font-family: 'Vladivostok';
+    src: local('Vladivostok Bold'), local('Vladivostok-Bold'),
+        url('/assets/fonts/Vladivostok-Bold.woff2') format('woff2'),
+        url('/assets/fonts/Vladivostok-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Vladivostok';
+    src: local('Vladivostok Regular'), local('Vladivostok-Regular'),
+        url('/assets/fonts/Vladivostok-Regular.woff2') format('woff2'),
+        url('/assets/fonts/Vladivostok-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: local('Inter 18pt Regular'), local('Inter18pt-Regular'),
+        url('/assets/fonts/Inter18pt-Regular.woff2') format('woff2'),
+        url('/assets/fonts/Inter18pt-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: local('Inter 18pt SemiBold'), local('Inter18pt-SemiBold'),
+        url('/assets/fonts/Inter18pt-SemiBold.woff2') format('woff2'),
+        url('/assets/fonts/Inter18pt-SemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
