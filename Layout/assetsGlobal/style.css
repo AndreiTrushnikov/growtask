@@ -1,0 +1,145 @@
+:root {
+    --bg-color--white: #ffffff;
+    --main-gray--black: #0D0D0D;
+    --main-gray--darker: #2B2B2B;
+    --main-gray--dark: #404040;
+    --main-gray--medium: #999999;
+    --main-gray--light: #CCCCCC;
+    --main-gray--lighter: #F2F2F2;
+    --main-gray--white: #FFFFFF;
+
+
+    --text-icon-gray--medium: #999999;
+    --text-icon-gray--black: #999999;
+    --text-icon-gray--darker: #2B2B2B;
+    --text-icon-gray--dark: #404040;
+    --text-icon-gray--white: #FFFFFF;
+
+    --font-family--titles: 'Vladivostok';
+    --font-family--main: 'Inter';
+
+    --states-error--darker: #A61029;
+    --states-error--dark: #CC2929;
+}
+
+
+/* Interface */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    background-color: var(--bg-color--white);
+}
+
+body {
+    font-family: var(--font-family--main);
+    font-style: normal;
+    font-weight: 400;
+    color: var(--main-gray--black);
+    font-size: 1rem;
+    line-height: 125%;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-style: normal;
+    font-weight: var(--font-family--titles);
+    line-height: 100%;
+    margin-top: 0;
+}
+
+
+.container {
+    max-width: 1920px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 250px;
+    border: 0;
+    border-spacing: 0;
+    position: relative;
+}
+@media (max-width: 1760px) {
+    .container {
+        max-width: 100%;
+    }
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    min-height: 64px;
+    border-bottom: 1px;
+    padding: 8px 0;
+}
+
+.header-line {
+    height: 2px;
+    width: 100%;
+    background-color: var(--main-gray--lighter);
+    flex-shrink: 0;
+}
+
+/* Small Basket */
+.small-basket-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+
+    min-width: 92px;
+    width: 100%;
+    height: 48px;
+
+    /* main/gray/lighter */
+    background: var(--main-gray--lighter);
+    border-radius: 12px;
+    padding: 6px;
+
+    position: relative;
+    text-decoration: none;
+}
+
+.small-basket-btn:hover {
+
+}
+
+.small-basket-btn:hover .small-basket__price {
+    color: var(--main-gray--light);
+}
+
+.small-basket__quantity {
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 16px;
+    padding: 4px;
+    border-radius: 10px;
+    background-color: var(--states-error--dark);
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 145%;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.small-basket__price {
+    font-weight: 600;
+    font-size: 11px;
+    line-height: 130%;
+    color: var(--states-error--darker);
+}
