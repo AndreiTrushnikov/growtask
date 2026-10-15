@@ -16,6 +16,8 @@
 
     --text-icon-color1--darker: #A61029;
     --text-icon-color1--dark: #CC1433;
+    --text-icon-color1--light: #FC8B9E;
+    --text-icon-color1--lighter: #FCD7DD;
 
     --font-family--titles: 'Vladivostok';
     --font-family--main: 'Inter';
@@ -107,6 +109,28 @@ h6 {
     display: none;
     position: absolute;
     opacity: 0;
+}
+
+.line {
+    height: 2px;
+    width: 100%;
+    background-color: var(--main-gray--lighter);
+    flex-shrink: 0;
+}
+
+main {
+    margin-bottom: 40px;
+}
+
+@media (max-width: 768px) {
+    main {
+        margin-bottom: 40px;
+    }
+}
+
+.logo {
+    max-width: 212px;
+    max-height: 40px;
 }
 
 /* Buttons */
@@ -226,13 +250,6 @@ h6 {
     min-height: 64px;
     border-bottom: 1px;
     padding: 8px 0;
-}
-
-.header-line {
-    height: 2px;
-    width: 100%;
-    background-color: var(--main-gray--lighter);
-    flex-shrink: 0;
 }
 
 .header-adaptive {
@@ -660,5 +677,40 @@ h6 {
     }
     .price {
         align-items: flex-start;
+    }
+}
+
+/* Footer */
+.footer {
+    margin-bottom: 80px;
+}
+.footer__info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.footer-wrapper {
+    background-color: var(--text-icon-color1--lighter);
+}
+
+.footer .line {
+    margin: 40px 0;
+}
+
+.copyright {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 150%;
+    letter-spacing: 0;
+    color: var(--text-icon-gray--medium);
+}
+@media (max-width: 768px) {
+    .footer {
+        margin-bottom: 150px;
+    }
+    .footer__info {
+        flex-direction: column;
     }
 }

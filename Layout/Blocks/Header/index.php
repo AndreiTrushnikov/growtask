@@ -35,7 +35,7 @@
                 Главная
             </div>
             <? } ?>
-            <a href="/" class="header__logo">
+            <a href="/" class="header__logo logo">
                 <img src="/assets/icons/logo.svg" alt="Logo">
             </a>
             <div class="header__basket">
@@ -57,7 +57,7 @@
                 </div>
             </div>
         </div>
-        <div class="header-line"></div>
+        <div class="line"></div>
     </div>
 </header>
 <main>
