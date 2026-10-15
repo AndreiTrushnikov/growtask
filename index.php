@@ -4,7 +4,7 @@
 
 <div class="container">
     <br>
-    <a href="/cart/">В корзину</a>  <br>
+    <a href="/basket/">В корзину</a>  <br>
     <a href="/order/">На страницу оформления заказа</a>  <br>
 </div>
 

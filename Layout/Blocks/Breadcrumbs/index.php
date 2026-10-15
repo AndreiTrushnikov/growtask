@@ -21,7 +21,7 @@
                 </li>
                 <? } else if ($page === 'Оформление заказа') { ?>
                     <li class="breadcrumbs-list__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                        <a href="/cart/" class="breadcrumbs-list__item-link" itemprop="item">
+                        <a href="/basket/" class="breadcrumbs-list__item-link" itemprop="item">
                             <span itemprop="name">Корзина</span>
                         </a>
                         <meta itemprop="position" content="2" />

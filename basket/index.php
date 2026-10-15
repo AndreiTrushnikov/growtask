@@ -1,4 +1,4 @@
-<?// Cart Page ?>
+<?// Basket Page ?>
 <?php
 //Хардкод для крошек и шапки
 $page="Корзина";
@@ -16,7 +16,7 @@ $page="Корзина";
             <h3 class="title">
                 Корзина
             </h3>
-            <div class="cart-quantity bg-gray">
+            <div class="basket-quantity bg-gray">
                 0000 шт.
             </div>
         </div>
@@ -24,10 +24,20 @@ $page="Корзина";
 </div>
 
 <div class="container">
-    <div class="cart-listing">
-        <?php foreach ($data['data'] as $product) { ?>
-            <?php include  $_SERVER['DOCUMENT_ROOT'] . "/Layout/Blocks/Cart/Card/index.php";?>
-        <?php } ?>
+    <div class="basket-wrapper">
+        <div class="basket-items-wrapper">
+            <div class="basket-buttons">
+                <button type="button">1</button>
+                <button type="button">2</button>
+            </div>
+            <div class="basket-items">
+                <?php foreach ($data['data'] as $product) { ?>
+                    <?php include  $_SERVER['DOCUMENT_ROOT'] . "/Layout/Blocks/Basket/Card/index.php";?>
+                <?php } ?>
+            </div>
+        </div>
+
+        <?php include  $_SERVER['DOCUMENT_ROOT'] . "/Layout/Blocks/Basket/BasketTotal/index.php";?>
     </div>
 </div>
 
