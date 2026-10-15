@@ -13,4 +13,5 @@
     </div>
 </footer>
 </body>
+<script src="/Layout/assetsGlobal/script.js"></script>
 </html>
