@@ -1,3 +1,4 @@
+<?php global $page; ?>
 <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/Layout/Blocks/Header/index.php'; ?>
 <?// Main Page ?>
 
