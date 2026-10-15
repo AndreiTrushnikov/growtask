@@ -30,6 +30,10 @@
                         В корзину
                     </span>
                 </a>
+            <? } else if ($page && $page === 'Успешный заказ') { ?>
+            <div class="title-above header-adaptive">
+                <?= $page; ?>
+            </div>
             <? } else { ?>
             <div class="title-above header-adaptive">
                 Главная
