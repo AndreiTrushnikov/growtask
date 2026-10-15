@@ -16,7 +16,7 @@
     <div class="container">
         <div class="header">
             <? if ($page && $page === 'Корзина') { ?>
-            <div class=" class="title-above" header-adaptive">
+            <div class="title-above header-adaptive">
                 Корзина
             </div>
             <? } else if ($page && $page === 'Оформление заказа') { ?>
@@ -31,7 +31,7 @@
                     </span>
                 </a>
             <? } else { ?>
-            <div class="title-above" header-adaptive">
+            <div class="title-above header-adaptive">
                 Главная
             </div>
             <? } ?>
