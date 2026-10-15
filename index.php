@@ -1,5 +1,10 @@
-<?php require_once 'Layout/Blocks/Header/index.php'; ?>
+<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/Layout/Blocks/Header/index.php'; ?>
 <?// Main Page ?>
-<a href="/cart/">В корзину</a>
 
-<?php require_once 'Layout/Blocks/Footer/index.php'; ?>
+<div class="container">
+    <br>
+    <a href="/cart/">В корзину</a>  <br>
+    <a href="/order/">На страницу оформления заказа</a>  <br>
+</div>
+
+<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/Layout/Blocks/Footer/index.php'; ?>
