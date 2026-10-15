@@ -20,6 +20,10 @@
 
     --states-error--darker: #A61029;
     --states-error--dark: #CC2929;
+
+    --text-color1--main: #F23051;
+
+    --main-color1--light: #FC8B9E;
 }
 
 
@@ -132,6 +136,7 @@ h1, h2, h3, h4, h5, h6 {
 
     position: relative;
     text-decoration: none;
+    transition-duration: 0.3s;
 }
 
 .small-basket-btn:hover .small-basket__price {
@@ -153,9 +158,10 @@ h1, h2, h3, h4, h5, h6 {
     font-style: normal;
     font-weight: 400;
     font-size: 11px;
-    line-height: 145%;
+    line-height: 110%;
     text-align: center;
     color: #FFFFFF;
+    height: 16px;
 }
 
 .small-basket__price {
@@ -171,4 +177,84 @@ h1, h2, h3, h4, h5, h6 {
 
 .small-basket-btn:hover svg path {
     fill: var(--text-icon-gray--darker);
+}
+
+/* Cart Listing */
+.cart-listing {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Breadcrumbs */
+.breadcrumbs-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 4px;
+    padding-left: 0;
+}
+.breadcrumbs-list__item {
+    display: flex;
+    justify-content: flex-start;
+    gap: 4px;
+    list-style-type: none;
+    position: relative;
+}
+
+.breadcrumbs-list__item:before {
+    content: '/';
+    position: relative;
+    padding: 0 4px;
+}
+
+.breadcrumbs-list__item:first-child {
+    margin-right: 8px;
+}
+
+.breadcrumbs-list__item:first-child:before {
+    content: unset;
+}
+
+.breadcrumbs-list__item,
+.breadcrumbs-list__item-link {
+    text-decoration: none;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 130%;
+    color: var(--text-icon-gray--darker);
+}
+
+.breadcrumbs-list__item-link:visited {
+    color: var(--text-icon-gray--darker);
+}
+
+.breadcrumbs-list__item-link:hover {
+    color: var(--text-color1--main);
+}
+
+.breadcrumbs-list__item-link.breadcrumbs-list__item-link--current:hover {
+    color: var(--text-icon-gray--darker);
+}
+
+.home-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--main-gray--lighter);
+    padding: 8px;
+    border-radius: 12px;
+    transition-duration: 0.3s;
+}
+
+.home-btn:hover {
+    background: var(--main-color1--light);
+}
+
+@media (max-width: 768px) {
+    .breadcrumbs-wrapper {
+        display: none;
+    }
 }
