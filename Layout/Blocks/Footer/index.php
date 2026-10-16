@@ -13,5 +13,5 @@
     </div>
 </footer>
 </body>
-<script src="/Layout/assetsGlobal/script.js"></script>
+<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts.php'; ?>
 </html>
