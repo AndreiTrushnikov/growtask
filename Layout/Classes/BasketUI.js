@@ -6,6 +6,7 @@ class BasketUI {
     constructor(options = {}) {
         this.countersSelector = options.counterSelector || '[data-el="items-counter"]';
         this.basketItemTotalSumSelector = options.basketItemTotalSumSelector || '[data-el="basket-item-total-sum"]';
+        this.clearBasketBtnSelector = options.clearBasketBtnSelector || '[data-el="clear-basket"]';
 
         this.counterElements = null;
     }

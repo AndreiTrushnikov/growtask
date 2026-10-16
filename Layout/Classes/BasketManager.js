@@ -157,4 +157,12 @@ class BasketManager {
     getCount() {
         return this.items.reduce((sum, item) => sum + item.quantity, 0);
     }
+
+
+
+    clearBasket() {
+        this.items.forEach(item => {
+            this.remove(item.id);
+        })
+    }
 }
