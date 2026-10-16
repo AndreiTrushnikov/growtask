@@ -12,7 +12,7 @@ class ProductManager {
      * @param {number} options.cacheDuration - Время жизни кэша в миллисекундах (по умолчанию 1 час)
      */
     constructor(options = {}) {
-        this.containerId = options.containerId || 'products-container';
+        this.containerId = options.containerId || 'basket-items';
         this.apiEndpoint = options.apiEndpoint || '/api/get-products.php';
         this.renderEndpoint = options.renderEndpoint || '/api/render-products.php';
         this.storageKey = options.storageKey || 'products_data';

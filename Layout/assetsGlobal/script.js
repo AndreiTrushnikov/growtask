@@ -32,8 +32,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     // Работа с менеджером корзины
-    const BasketManager = new ProductManager({});
-    BasketManager.init();
+    const basketManager = new BasketManager({
+        storageKey: 'products_data',
+        onUpdateCallback: (items) => {
+            console.log(`[CartManager] Корзина обновлена, товаров: ${items.length}`);
+        }
+    });
+    basketManager.init();
     window.basketManager = BasketManager;
 })
 

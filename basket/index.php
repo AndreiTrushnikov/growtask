@@ -12,7 +12,7 @@ $page="Корзина";
             <h3 class="title">
                 Корзина
             </h3>
-            <div class="basket-quantity bg-gray">
+            <div class="basket-quantity bg-gray" id="basket-items-counter">
                 000 шт.
             </div>
         </div>
@@ -43,5 +43,4 @@ $page="Корзина";
         <?php include  $_SERVER['DOCUMENT_ROOT'] . "/Layout/Blocks/Basket/BasketTotal/index.php";?>
     </div>
 </div>
-
 <?php require_once  $_SERVER['DOCUMENT_ROOT'] . '/Layout/Blocks/Footer/index.php'; ?>
