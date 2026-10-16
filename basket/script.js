@@ -18,6 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
         afterInitCallback: () => {
             basketManager.init();
             window.basketManager = basketManager;
+
+            listingManager.init();
+            window.listingManager = listingManager;
         }
     });
     productManager.init();
@@ -35,12 +38,16 @@ document.addEventListener('DOMContentLoaded', () => {
     basketUI.init();
     window.basketUI = basketUI;
 
+    const listingManager = new ListingManager({
+        basketItemCheckboxSelector: '[data-el="basket-item-checkbox"]',
+    })
+
     document.addEventListener('click', (e) => {
         const target = e.target.closest('[data-el]');
         if (!target) return;
 
         const card = e.target.closest('[data-el="basket-item"]');
-        console.log('card',card)
+
         if (target.dataset.el === 'minus') {
             window.basketManager.decrement(+card.id);
         } else if (target.dataset.el === 'plus') {
@@ -49,6 +56,12 @@ document.addEventListener('DOMContentLoaded', () => {
             window.basketManager.remove(+card.id);
         } else if (target.dataset.el === 'clear-basket') {
             window.basketManager.clearBasket();
+        } else if (target.dataset.el === 'select-all') {
+            if (target.querySelector('input[type="checkbox"]').checked) {
+                window.listingManager.selectAll();
+            } else {
+                window.listingManager.unSelectAll();
+            }
         }
         window.basketManager.recalculateTotalSum();
     });

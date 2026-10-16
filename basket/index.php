@@ -23,7 +23,7 @@ $page="Корзина";
     <div class="basket-wrapper">
         <div class="basket-items-wrapper">
             <div class="basket-buttons">
-                <button class="btn btn--grey basket-button-select-all" type="button">
+                <button class="btn btn--grey basket-button-select-all" type="button" data-el="select-all">
                     <label class="custom-checkbox basket-item-checkbox">
                         <input type="checkbox" class="custom-checkbox__input">
                         <span class="custom-checkbox__icon"></span>

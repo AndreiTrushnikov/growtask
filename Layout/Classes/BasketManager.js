@@ -180,7 +180,6 @@ class BasketManager {
     }
 
     recalculateTotalDiscount() {
-        console.log('--------------this.items',this.items)
         return this.items.reduce((sum, item) => {
             if (item.old_price !== null && item.price !== null && item.quantity !== null) {
                 return sum + (Math.abs(item.old_price) - item.price) * item.quantity;

@@ -8,7 +8,7 @@ if (empty($product)) {
     <div class="basket-item">
         <div class="basket-item__image">
             <label class="custom-checkbox basket-item-checkbox">
-                <input type="checkbox" class="custom-checkbox__input">
+                <input type="checkbox" class="custom-checkbox__input" data-el="basket-item-checkbox">
                 <span class="custom-checkbox__icon"></span>
             </label>
             <? if (!empty($product['image'])) {
