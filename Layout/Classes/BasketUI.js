@@ -12,6 +12,10 @@ class BasketUI {
         this.totalDiscountSelector = options.totalDiscountSelector || '[data-el="total-discount"]';
         this.totalSumSelector = options.totalSumSelector || '[data-el="total-sum"]';
 
+        this.toOrderBtnSelector = options.toOrderBtnSelector || '[data-el="to-order-btn"]';
+
+        this.disableSelector = 'disabled';
+
         this.counterElements = null;
     }
 
@@ -83,5 +87,9 @@ class BasketUI {
         document.querySelectorAll(this.totalSumSelector).forEach(el => {
             el.textContent = sums.totalSum;
         })
+    }
+
+    toggleOrderPossibility() {
+        document.querySelector(this.toOrderBtnSelector).classList.toggle(this.disableSelector);
     }
 }

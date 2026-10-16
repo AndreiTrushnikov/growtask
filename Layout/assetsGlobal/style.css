@@ -323,8 +323,18 @@ textarea {
     color: var(--text-icon-gray--white);
 }
 
+.btn.disabled {
+    user-select: none;
+    background-color: var(--main-gray--medium);
+    cursor: default;
+    pointer-events: none;
+}
+.btn.disabled:hover {
+    background-color: var(--main-gray--medium);
+}
 
-/* BG */
+
+    /* BG */
 .bg-gray {
     background-color: var(--main-gray--lighter);
 }

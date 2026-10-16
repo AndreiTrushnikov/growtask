@@ -5,6 +5,9 @@ document.addEventListener('DOMContentLoaded', () => {
         onUpdateCallback: () => {
             basketUI.updateCounter(basketManager.getCount());
             basketUI.updateTotalSums(basketManager.recalculateTotalSum());
+            if (basketManager.getCount() === 0) {
+                basketUI.toggleOrderPossibility();
+            }
         },
     });
 
@@ -34,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
         totalSumWithDiscountSelector: '[data-el="total-sum-without-discount"]',
         totalDiscountSelector: '[data-el="total-discount"]',
         totalSumSelector: '[data-el="total-sum"]',
+        toOrderBtnSelector: '[data-el="to-order-btn"]',
     });
     basketUI.init();
     window.basketUI = basketUI;

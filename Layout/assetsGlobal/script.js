@@ -1,5 +1,4 @@
 function declineWord(number, form1, form2, form5) {
-    console.log('number',number)
     const n = Math.abs(number) % 100;
     const n1 = n % 10;
     let answer = number;

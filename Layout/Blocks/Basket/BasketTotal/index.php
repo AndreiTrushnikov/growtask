@@ -41,8 +41,7 @@ if ($page === 'Корзина') {
             </div>
             <span class="divider"></span>
         </div>
-        <button type="button" class="btn btn--accent btn--high w-100">
-
+        <a href="/order/" class="btn btn--accent btn--high w-100" data-el="to-order-btn">
             <?if ($page === 'Корзина') { ?>
                 <span>К оформлению</span>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -55,7 +54,7 @@ if ($page === 'Корзина') {
             <? } else { ?>
                 <span>Оформить заказ</span>
             <? } ?>
-        </button>
+        </a>
     </div>
 
     <div class="accordion">
