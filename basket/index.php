@@ -43,4 +43,5 @@ $page="Корзина";
         <?php include  $_SERVER['DOCUMENT_ROOT'] . "/Layout/Blocks/Basket/BasketTotal/index.php";?>
     </div>
 </div>
+<script src="script.js" defer></script>
 <?php require_once  $_SERVER['DOCUMENT_ROOT'] . '/Layout/Blocks/Footer/index.php'; ?>

@@ -25,11 +25,23 @@ class BasketUI {
      * @param {number} count - Количество товаров
      */
     updateCounter(count) {
-        console.log('this.counterElements'),this.counterElements
         this.counterElements.forEach(el => {
-            console.log('el',el)
             el.textContent = count;
             console.log(`[BasketUI] Счётчик обновлён: ${count}`);
         })
+    }
+
+
+
+    /**
+     * Обновление количества у одного товара
+     */
+    updateQuantity(productId, quantity) {
+        console.log('123')
+        document.getElementById(productId).querySelector('[data-el="item-quantity"]').value = quantity;
+    }
+
+    remove(productId) {
+        document.getElementById(productId).remove();
     }
 }

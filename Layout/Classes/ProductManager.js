@@ -10,6 +10,7 @@ class ProductManager {
      * @param {string} options.renderEndpoint - URL для рендеринга HTML
      * @param {string} options.storageKey - Ключ для localStorage
      * @param {number} options.cacheDuration - Время жизни кэша в миллисекундах (по умолчанию 1 час)
+     * @param {number} options.afterInitCallback - Функция вызывается после загрузки данных с удаленного сервера
      */
     constructor(options = {}) {
         this.containerId = options.containerId || 'basket-items';
@@ -20,6 +21,8 @@ class ProductManager {
 
         this.storageKey = options.storageKey || 'products_data';
         this.expiresKey = this.storageKey + '_expires_at'; //
+
+        this.afterInitCallback = options.afterInitCallback || null;
 
         this.container = null;
         this.cachedData = null;
@@ -50,6 +53,11 @@ class ProductManager {
             // Кэша нет — делаем запрос к API
             console.log('[ProductManager] Запрос к API...');
             await this.loadProductsFromApi();
+        }
+
+        // Вызываем коллбэк для первоначальной загрузки
+        if (this.afterInitCallback && typeof this.afterInitCallback === 'function') {
+            this.afterInitCallback();
         }
     }
 

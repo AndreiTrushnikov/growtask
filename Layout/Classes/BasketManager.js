@@ -11,7 +11,7 @@ class BasketManager {
      */
     constructor(options = {}) {
         this.storageKey = options.storageKey || 'products_data';
-        this.onInitCallback = options.onInitCallback || null; // Колбек для внесения изменений на страницу во время первоначальной загрузки
+        // this.onInitCallback = options.onInitCallback || null; // Колбек для внесения изменений на страницу во время первоначальной загрузки
         this.onUpdateCallback = options.onUpdateCallback || null; // Колбек для внесения изменений на страницу во время изменения корзины
 
         this.items = [];
@@ -47,8 +47,8 @@ class BasketManager {
         }
 
         // Вызываем коллбэк для первоначальной загрузки
-        if (this.onInitCallback && typeof this.onInitCallback === 'function') {
-            this.onInitCallback(this.items);
+        if (this.onUpdateCallback && typeof this.onUpdateCallback === 'function') {
+            this.onUpdateCallback(this.items);
         }
     }
 
@@ -82,6 +82,7 @@ class BasketManager {
         this.items = this.items.filter(item => item.id !== productId);
 
         if (this.items.length < initialLength) {
+            basketUI.remove(productId);
             console.log(`[BasketManager] Удалён товар ${productId}`);
             this.saveToStorage();
             return true;
@@ -107,11 +108,14 @@ class BasketManager {
         }
 
         if (quantity <= 0) {
-            // Если количество <= 0, удаляем товар
+            basketUI.remove(productId);
             return this.remove(productId);
         }
 
         item.quantity = quantity;
+
+        basketUI.updateQuantity(productId, item.quantity);
+
         console.log(`[BasketManager] Количество товара ${productId} изменено на ${quantity}`);
         this.saveToStorage();
         return true;

@@ -4,9 +4,6 @@
 $page="Оформление заказа";
 ?>
 <?php require_once  $_SERVER['DOCUMENT_ROOT'] . '/Layout/Blocks/Header/index.php'; ?>
-<?php
-include  $_SERVER['DOCUMENT_ROOT'] .  '/data.php';
-?>
 
 <?php require_once  $_SERVER['DOCUMENT_ROOT'] .  '/Layout/Blocks/Breadcrumbs/index.php'; ?>
 
