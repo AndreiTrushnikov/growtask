@@ -114,6 +114,7 @@ class BasketManager {
 
         basketUI.updateQuantity(productId, item.quantity);
         basketUI.updateBasketItemTotalSum(productId, item);
+        this.recalculateTotalSum();
 
         console.log(`[BasketManager] Количество товара ${productId} изменено на ${quantity}`);
         this.saveToStorage();
@@ -160,9 +161,43 @@ class BasketManager {
 
 
 
+    /**
+     * Очистка всей корзины
+     */
     clearBasket() {
         this.items.forEach(item => {
             this.remove(item.id);
         })
+    }
+
+    recalculateTotalSumWithoutDiscount() {
+        return this.items.reduce((sum, item) => {
+            if (item.price !== null && item.quantity !== null) {
+                return sum + item.price * item.quantity;
+            }
+            return sum;
+        }, 0);
+    }
+
+    recalculateTotalDiscount() {
+        console.log('--------------this.items',this.items)
+        return this.items.reduce((sum, item) => {
+            if (item.old_price !== null && item.price !== null && item.quantity !== null) {
+                return sum + (Math.abs(item.old_price) - item.price) * item.quantity;
+            }
+            return sum;
+        }, 0)
+    }
+
+    recalculateTotalSum() {
+        let sum = {
+            totalSumWithoutDiscount: this.recalculateTotalSumWithoutDiscount(),
+            discount: this.recalculateTotalDiscount(),
+            totalSum: this.recalculateTotalSumWithoutDiscount() - this.recalculateTotalDiscount()
+        }
+
+        basketUI.updateTotalSums(sum);
+
+        return sum;
     }
 }

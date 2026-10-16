@@ -53,9 +53,7 @@
                         </span>
                         <span class="small-basket__quantity" data-el="items-counter"></span>
                         <span class="small-basket__price">
-                            <?
-                            $defaultPrice = 1999999;
-                            echo number_format($defaultPrice, 0, '.', ' '); ?> ₽
+                            <span data-el="total-sum">0</span> ₽
                         </span>
                     </a>
                 </div>

@@ -19,19 +19,25 @@ if ($page === 'Корзина') {
                 <span>
                     <span data-el="items-counter" data-type="with-word"></span>:
                 </span>
-                <span><span>19 600 </span>₽</span>
+                <span>
+                    <span data-el="total-sum-without-discount">0</span> ₽
+                </span>
             </div>
             <span class="divider"></span>
 
             <div class="basket-total__result basket-total__result--discount">
                 <span>Скидка:</span>
-                <span><span>2 600</span> ₽</span>
+                <span>
+                    <span data-el="total-discount">0</span> ₽
+                </span>
             </div>
             <span class="divider"></span>
 
             <div class="basket-total__result basket-total__result--summary">
                 <span>Итого:</span>
-                <span><span>17 600</span> ₽</span>
+                <span>
+                    <span data-el="total-sum">0</span> ₽
+                </span>
             </div>
             <span class="divider"></span>
         </div>

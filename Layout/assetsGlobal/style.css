@@ -471,7 +471,8 @@ textarea {
     height: 16px;
 }
 
-.btn .small-basket__price {
+.btn .small-basket__price,
+.btn .small-basket__price span {
     letter-spacing: 0;
     font-weight: 600;
     font-size: 11px;

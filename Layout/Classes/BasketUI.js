@@ -8,6 +8,10 @@ class BasketUI {
         this.basketItemTotalSumSelector = options.basketItemTotalSumSelector || '[data-el="basket-item-total-sum"]';
         this.clearBasketBtnSelector = options.clearBasketBtnSelector || '[data-el="clear-basket"]';
 
+        this.totalSumWithoutDiscountSelector = options.totalSumWithoutDiscountSelector || '[data-el="total-sum-without-discount"]';
+        this.totalDiscountSelector = options.totalDiscountSelector || '[data-el="total-discount"]';
+        this.totalSumSelector = options.totalSumSelector || '[data-el="total-sum"]';
+
         this.counterElements = null;
     }
 
@@ -66,5 +70,18 @@ class BasketUI {
      */
     updateBasketItemTotalSum(productId, item) {
         document.getElementById(productId).querySelector(this.basketItemTotalSumSelector).textContent = item.price * item.quantity;
+    }
+
+
+    updateTotalSums(sums) {
+        document.querySelectorAll(this.totalSumWithoutDiscountSelector).forEach(el => {
+            el.textContent = sums.totalSumWithoutDiscount;
+        })
+        document.querySelectorAll(this.totalDiscountSelector).forEach(el => {
+            el.textContent = sums.discount;
+        })
+        document.querySelectorAll(this.totalSumSelector).forEach(el => {
+            el.textContent = sums.totalSum;
+        })
     }
 }

@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
         storageKey: 'products_data',
         onUpdateCallback: () => {
             basketUI.updateCounter(basketManager.getCount());
+            basketUI.updateTotalSums(basketManager.recalculateTotalSum());
         },
     });
 
@@ -27,6 +28,9 @@ document.addEventListener('DOMContentLoaded', () => {
         counterSelector: '[data-el="items-counter"]',
         basketItemTotalSumSelector: '[data-el="basket-item-total-sum"]',
         clearBasketBtnSelector: '[data-el="clear-basket"]',
+        totalSumWithDiscountSelector: '[data-el="total-sum-without-discount"]',
+        totalDiscountSelector: '[data-el="total-discount"]',
+        totalSumSelector: '[data-el="total-sum"]',
     });
     basketUI.init();
     window.basketUI = basketUI;
@@ -46,5 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (target.dataset.el === 'clear-basket') {
             window.basketManager.clearBasket();
         }
+        window.basketManager.recalculateTotalSum();
     });
 })
