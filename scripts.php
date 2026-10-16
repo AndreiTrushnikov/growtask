@@ -4,4 +4,7 @@
 <script src="/Layout/Classes/CustomFormElements.js"></script>
 <script src="/Layout/Classes/ListingManager.js"></script>
 
+<script src="/Layout/Classes/OrderManager.js"></script>
+<script src="/Layout/Classes/OrderUI.js"></script>
+
 <script src="/Layout/assetsGlobal/script.js"></script>
