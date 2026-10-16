@@ -40,8 +40,7 @@ $page="Корзина";
                 </button>
             </div>
             <div class="basket-items">
-                <?php
-                foreach ($data['data'] as $product) { ?>
+                <?php foreach ($data['data'] as $product) { ?>
                     <?php include $_SERVER['DOCUMENT_ROOT'] . "/Layout/Blocks/Basket/Card/index.php";?>
                 <?php } ?>
             </div>

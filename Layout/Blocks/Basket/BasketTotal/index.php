@@ -81,7 +81,7 @@
                                 </span>
                             </span>
                         </label>
-                        <button type="button" class="btn btn--black btn--high w-100">
+                        <button type="button" class="btn btn--black btn--high w-100 mt-12">
                             <span>Применить</span>
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M5.00023 10.9999L16.5862 10.9999L11.2932 5.70696C10.9027 5.31643 10.9027 4.68342 11.2932 4.29289C11.6837
