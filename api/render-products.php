@@ -1,16 +1,23 @@
 <?php
 header('Content-Type: application/json');
-require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/ProductApiCache.php';
+header('Access-Control-Allow-Origin: *');
 
-$apiCache = new ProductApiCache(
-    $_SERVER['DOCUMENT_ROOT'] . '/cache/products_cache.json',
-    3600,
-    'https://growtask.ru/test-front/api/products'
-);
+// Получаем данные из POST запроса
+$input = file_get_contents('php://input');
+$request = json_decode($input, true);
 
-$data = $apiCache->getData();
+if (!$request || !isset($request['data']) || !is_array($request['data'])) {
+    http_response_code(400);
+    echo json_encode([
+        'success' => false,
+        'error' => 'Invalid request data'
+    ]);
+    exit;
+}
 
-// Рендерим и кешируем шаблон
+$data = ['data' => $request['data']];
+
+// Рендерим HTML
 ob_start();
 if (!empty($data['data'])) {
     foreach ($data['data'] as $product) {

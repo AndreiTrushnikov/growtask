@@ -4,7 +4,7 @@
 $page="Корзина";
 ?>
 <?php require_once  $_SERVER['DOCUMENT_ROOT'] . '/Layout/Blocks/Header/index.php'; ?>
-<?php require_once  $_SERVER['DOCUMENT_ROOT'] .  '/Layout/Blocks/Breadcrumbs/index.php'; ?>
+<?php require_once  $_SERVER['DOCUMENT_ROOT'] . '/Layout/Blocks/Breadcrumbs/index.php'; ?>
 
 <div class="title-wrapper">
     <div class="container">

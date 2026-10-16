@@ -65,13 +65,14 @@ class CustomFormElements {
 
 /**
  * Класс для управления товарами с кэшированием в localStorage
+ * Кэш хранится ТОЛЬКО в браузере, PHP файлы только проксируют запросы к API
  */
 class ProductManager {
     /**
      * @param {Object} options - Настройки
      * @param {string} options.containerId - ID контейнера для товаров
      * @param {string} options.apiEndpoint - URL для получения данных
-     * @param {string} options.renderEndpoint - URL для получения отрендеренного HTML
+     * @param {string} options.renderEndpoint - URL для рендеринга HTML
      * @param {string} options.storageKey - Ключ для localStorage
      * @param {number} options.cacheDuration - Время жизни кэша в миллисекундах (по умолчанию 1 час)
      */
@@ -86,8 +87,6 @@ class ProductManager {
         this.cachedData = null;
     }
 
-
-
     /**
      * Инициализация
      */
@@ -95,7 +94,7 @@ class ProductManager {
         this.container = document.getElementById(this.containerId);
 
         if (!this.container) {
-            console.error(`Контейнер с ID "${this.containerId}" не найден`);
+            console.error(`[ProductManager] Контейнер с ID "${this.containerId}" не найден`);
             return;
         }
 
@@ -105,18 +104,16 @@ class ProductManager {
         const cachedData = this.checkLocalStorage();
 
         if (cachedData) {
-            // Данные есть в кэше — используем их
-            console.log('Данные загружены из localStorage');
+            // Данные есть в кэше — используем их, запросов к API НЕТ
+            console.log('[ProductManager] Данные загружены из localStorage');
             this.cachedData = cachedData;
-            await this.renderProducts();
+            await this.renderProducts(cachedData);
         } else {
             // Кэша нет — делаем запрос к API
-            console.log('Запрос к API...');
+            console.log('[ProductManager] Запрос к API...');
             await this.loadProductsFromApi();
         }
     }
-
-
 
     /**
      * Проверка localStorage на наличие актуальных данных
@@ -138,12 +135,10 @@ class ProductManager {
             localStorage.removeItem(this.storageKey);
             return null;
         } catch (e) {
-            console.error('Ошибка чтения из localStorage:', e);
+            console.error('[ProductManager] Ошибка чтения из localStorage:', e);
             return null;
         }
     }
-
-
 
     /**
      * Сохранение данных в localStorage
@@ -156,20 +151,18 @@ class ProductManager {
                 timestamp: Date.now()
             };
             localStorage.setItem(this.storageKey, JSON.stringify(payload));
-            console.log('Данные сохранены в localStorage');
+            console.log('[ProductManager] Данные сохранены в localStorage');
         } catch (e) {
-            console.error('Ошибка записи в localStorage:', e);
+            console.error('[ProductManager] Ошибка записи в localStorage:', e);
         }
     }
-
-
 
     /**
      * Загрузка товаров из API
      */
     async loadProductsFromApi() {
         try {
-            // Получаем данные
+            // Получаем данные из API
             const dataResponse = await fetch(this.apiEndpoint);
             const dataResult = await dataResponse.json();
 
@@ -181,55 +174,44 @@ class ProductManager {
             this.saveToLocalStorage(dataResult.data);
             this.cachedData = dataResult.data;
 
-            // Рендерим HTML через PHP
-            await this.renderProducts();
+            // Рендерим HTML
+            await this.renderProducts(dataResult.data);
 
         } catch (error) {
-            console.error('Ошибка загрузки:', error);
+            console.error('[ProductManager] Ошибка загрузки:', error);
             this.showError('Ошибка загрузки товаров');
         }
     }
 
-
-
     /**
-     * Получение отрендеренного HTML от сервера
-     * @returns {Promise<string>} HTML строка
+     * Рендеринг товаров через PHP шаблон
+     * @param {Array} products - Массив товаров
      */
-    async fetchRenderedHTML() {
+    async renderProducts(products) {
         try {
-            const response = await fetch(this.renderEndpoint);
+            // Отправляем данные в PHP для рендеринга HTML
+            const response = await fetch(this.renderEndpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ data: products })
+            });
+
             const result = await response.json();
 
             if (!result.success) {
                 throw new Error('Ошибка рендеринга на сервере');
             }
 
-            return result.html;
+            this.container.innerHTML = result.html;
+            console.log('[ProductManager] Товары успешно отрендерены');
+
         } catch (error) {
-            console.error('Ошибка получения HTML:', error);
-            throw error;
-        }
-    }
-
-
-
-    /**
-     * Рендеринг товаров
-     */
-    async renderProducts() {
-        try {
-            // Получаем отрендеренный HTML от PHP
-            const html = await this.fetchRenderedHTML();
-            this.container.innerHTML = html;
-            console.log('Товары успешно отрендерены');
-        } catch (error) {
-            console.error('Ошибка рендеринга:', error);
+            console.error('[ProductManager] Ошибка рендеринга:', error);
             this.showError('Ошибка отображения товаров');
         }
     }
-
-
 
     /**
      * Отображение состояния загрузки
@@ -239,8 +221,6 @@ class ProductManager {
             this.container.innerHTML = '<p>Загрузка товаров...</p>';
         }
     }
-
-
 
     /**
      * Отображение ошибки
