@@ -12,8 +12,8 @@ $page="Корзина";
             <h3 class="title">
                 Корзина
             </h3>
-            <div class="basket-quantity bg-gray" id="basket-items-counter">
-                000 шт.
+            <div class="basket-quantity bg-gray">
+                <span data-el="items-counter"></span> шт.
             </div>
         </div>
     </div>

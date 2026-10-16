@@ -15,8 +15,11 @@ class ProductManager {
         this.containerId = options.containerId || 'basket-items';
         this.apiEndpoint = options.apiEndpoint || '/api/get-products.php';
         this.renderEndpoint = options.renderEndpoint || '/api/render-products.php';
-        this.storageKey = options.storageKey || 'products_data';
+
         this.cacheDuration = options.cacheDuration || 3600 * 1000;
+
+        this.storageKey = options.storageKey || 'products_data';
+        this.expiresKey = this.storageKey + '_expires_at'; //
 
         this.container = null;
         this.cachedData = null;
@@ -50,6 +53,8 @@ class ProductManager {
         }
     }
 
+
+
     /**
      * Проверка localStorage на наличие актуальных данных
      * @returns {Array|null} Массив данных или null
@@ -57,23 +62,26 @@ class ProductManager {
     checkLocalStorage() {
         try {
             const cached = localStorage.getItem(this.storageKey);
-            if (!cached) return null;
+            const expiresAt = Number(localStorage.getItem(this.expiresKey));
 
-            const parsed = JSON.parse(cached);
+            if (!cached || !expiresAt) return null;
 
-            // Проверяем актуальность
-            if (Date.now() - parsed.timestamp < this.cacheDuration) {
-                return parsed.data;
+            // Если срок истёк — чистим
+            if (Date.now() >= expiresAt) {
+                localStorage.removeItem(this.storageKey);
+                localStorage.removeItem(this.expiresKey);
+                return null;
             }
 
-            // Если устарели, удаляем
-            localStorage.removeItem(this.storageKey);
-            return null;
+            // Срок актуален — возвращаем данные как есть
+            return JSON.parse(cached).data ?? JSON.parse(cached);
         } catch (e) {
             console.error('[ProductManager] Ошибка чтения из localStorage:', e);
             return null;
         }
     }
+
+
 
     /**
      * Сохранение данных в localStorage
@@ -81,12 +89,11 @@ class ProductManager {
      */
     saveToLocalStorage(data) {
         try {
-            const payload = {
-                data: data,
-                timestamp: Date.now()
-            };
-            localStorage.setItem(this.storageKey, JSON.stringify(payload));
-            console.log('[ProductManager] Данные сохранены в localStorage');
+            localStorage.setItem(this.storageKey, JSON.stringify(data));
+
+            if (!localStorage.getItem(this.expiresKey)) {
+                localStorage.setItem(this.expiresKey, String(Date.now() + this.cacheDuration));
+            }
         } catch (e) {
             console.error('[ProductManager] Ошибка записи в localStorage:', e);
         }
@@ -105,6 +112,9 @@ class ProductManager {
                 throw new Error('Неверный формат данных от API');
             }
 
+            // Удаляем нулевые остатки
+            dataResult.data = this.deleteZeroItems(dataResult.data);
+
             // Сохраняем в localStorage
             this.saveToLocalStorage(dataResult.data);
             this.cachedData = dataResult.data;
@@ -117,6 +127,20 @@ class ProductManager {
             this.showError('Ошибка загрузки товаров');
         }
     }
+
+
+
+    /**
+     * В корзине не должно быть товаров с 0 остатками, они автоматически должны удаляться.
+     * Поэтому метод сразу удаляет те товары, что пришли с бэка.
+     * Да, вероятно это не подходит под вашу задачу, но я пока что сделал так - всегда можно переделать
+     * под нужные условия.
+     */
+    deleteZeroItems(items) {
+        return items.filter(el => el.quantity > 0);
+    }
+
+
 
     /**
      * Рендеринг товаров через PHP шаблон
