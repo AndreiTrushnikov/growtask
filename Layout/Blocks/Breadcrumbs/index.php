@@ -1,6 +1,7 @@
 <?php
 // Breadcrumbs. На основе битриксовых с микроразметкой с захардкоженным определением страницы для сокращения времени работы
 ?>
+<? global $page; ?>
 <div class="breadcrumbs-wrapper">
     <div class="container">
         <nav class="breadcrumbs">

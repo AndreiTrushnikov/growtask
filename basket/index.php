@@ -10,12 +10,12 @@ $page="Корзина";
 
 <div class="title-wrapper">
     <div class="container">
-        <div class="title-block">
+        <div class="title-block ai-fs">
             <h3 class="title">
                 Корзина
             </h3>
             <div class="basket-quantity bg-gray">
-                0000 шт.
+                000 шт.
             </div>
         </div>
     </div>
@@ -25,7 +25,7 @@ $page="Корзина";
     <div class="basket-wrapper">
         <div class="basket-items-wrapper">
             <div class="basket-buttons">
-                <button class="btn btn--grey" type="button">
+                <button class="btn btn--grey basket-button-select-all" type="button">
                     <label class="custom-checkbox basket-item-checkbox">
                         <input type="checkbox" class="custom-checkbox__input">
                         <span class="custom-checkbox__icon"></span>

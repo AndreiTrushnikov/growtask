@@ -15,11 +15,11 @@
 <header>
     <div class="container">
         <div class="header">
-            <? if ($page && $page === 'Корзина') { ?>
+            <? if ($page === 'Корзина') { ?>
             <div class="title-above header-adaptive">
                 Корзина
             </div>
-            <? } else if ($page && $page === 'Оформление заказа') { ?>
+            <? } else if ($page === 'Оформление заказа') { ?>
                 <a href="/basket/" class="back-to-basket-btn header-adaptive">
                     <span class="back-to-basket-btn-icon btn btn--grey">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -30,7 +30,7 @@
                         В корзину
                     </span>
                 </a>
-            <? } else if ($page && $page === 'Успешный заказ') { ?>
+            <? } else if ($page === 'Успешный заказ') { ?>
             <div class="title-above header-adaptive">
                 <?= $page; ?>
             </div>
