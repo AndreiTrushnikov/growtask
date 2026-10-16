@@ -1,3 +1,15 @@
+function declineWord(number, form1, form2, form5) {
+    console.log('number',number)
+    const n = Math.abs(number) % 100;
+    const n1 = n % 10;
+    let answer = number;
+
+    if (n > 10 && n < 20) return `${number} ${form5}`;
+    if (n1 > 1 && n1 < 5) return `${number} ${form2}`;
+    if (n1 === 1) return `${number} ${form1}`;
+    return `${number} ${form5}`;
+}
+
 document.addEventListener("DOMContentLoaded", function () {
     // Работа аккордеонов
     const accordions = document.querySelectorAll('[data-el-type="accordion"]');

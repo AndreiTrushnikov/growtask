@@ -1,12 +1,7 @@
 // Создаём инстанс менеджера по работе с корзиной в localstorage
 const basketManager = new BasketManager({
     storageKey: 'products_data',
-    onInitCallback: () => {
-        console.log('onInitCallback --------- ')
-        basketUI.updateCounter(basketManager.getCount());
-    },
     onUpdateCallback: () => {
-        console.log('onUpdateCallback --------- ')
         basketUI.updateCounter(basketManager.getCount());
     },
 });
@@ -19,7 +14,6 @@ const productManager = new ProductManager({
     storageKey: 'products_data',
     cacheDuration: 3600 * 1000,
     afterInitCallback: () => {
-        console.log('UPDATE CALLBACK')
         basketManager.init();
         window.basketManager = basketManager;
     }
@@ -30,6 +24,7 @@ window.productManager = productManager;
 // Работа с корзиной
 const basketUI = new BasketUI({
     counterSelector: '[data-el="items-counter"]',
+    basketItemTotalSumSelector: '[data-el="basket-item-total-sum"]',
 });
 basketUI.init();
 window.basketUI = basketUI;

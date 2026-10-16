@@ -6,12 +6,10 @@ class BasketManager {
      * @param {Object} options - Настройки
      * @param {string} options.storageKey - Ключ для localStorage корзины
      * @param {string} options.basketItemsCounters - Селектор мест, где должны обновляться количество элементов в корзине
-     * @param {string} options.onInitCallback - Функция вызывается при первой загрузке
      * @param {string} options.onUpdateCallback - Функция вызывается при изменении корзины
      */
     constructor(options = {}) {
         this.storageKey = options.storageKey || 'products_data';
-        // this.onInitCallback = options.onInitCallback || null; // Колбек для внесения изменений на страницу во время первоначальной загрузки
         this.onUpdateCallback = options.onUpdateCallback || null; // Колбек для внесения изменений на страницу во время изменения корзины
 
         this.items = [];
@@ -82,7 +80,7 @@ class BasketManager {
         this.items = this.items.filter(item => item.id !== productId);
 
         if (this.items.length < initialLength) {
-            basketUI.remove(productId);
+            basketUI.removeFromDom(productId);
             console.log(`[BasketManager] Удалён товар ${productId}`);
             this.saveToStorage();
             return true;
@@ -108,13 +106,14 @@ class BasketManager {
         }
 
         if (quantity <= 0) {
-            basketUI.remove(productId);
+            basketUI.removeFromDom(productId);
             return this.remove(productId);
         }
 
         item.quantity = quantity;
 
         basketUI.updateQuantity(productId, item.quantity);
+        basketUI.updateBasketItemTotalSum(productId, item);
 
         console.log(`[BasketManager] Количество товара ${productId} изменено на ${quantity}`);
         this.saveToStorage();

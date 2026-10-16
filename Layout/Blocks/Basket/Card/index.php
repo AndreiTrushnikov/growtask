@@ -57,7 +57,7 @@ if (empty($product)) {
                         </button>
                     </div>
                     <div class="total-item-price">
-                        <span>000 000000</span> ₽
+                        <span data-el="basket-item-total-sum"><?=$product['quantity'] * $product['price']?></span> ₽
                     </div>
                 </div>
                 <button class="btn btn--grey btn--no-svg-fill basket-item__buttons-delete-btn" type="button" data-el="item-delete">
