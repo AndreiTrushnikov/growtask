@@ -3,21 +3,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const preloader = new Preloader();
     preloader.init();
 
-
-    // Создаём инстанс менеджера по работе со страницей оформления заказаы
-    const orderManager = new OrderManager({
-        containerId: 'order-items',
-        renderEndpoint: '/api/order-render-products.php',
-        storageKey: 'products_data',
-        formID: 'order-form',
-        preloader: preloader,
-        afterRenderCallback: () => {
-            basketManager.init();
-            window.basketManager = basketManager;
-        }
+    // Работа с DOM корзины
+    const basketUI = new BasketUI({
+        counterSelector: '[data-el="items-counter"]',
+        basketItemTotalSumSelector: '[data-el="basket-item-total-sum"]',
+        clearBasketBtnSelector: '[data-el="clear-basket"]',
+        totalSumWithDiscountSelector: '[data-el="total-sum-without-discount"]',
+        totalDiscountSelector: '[data-el="total-discount"]',
+        totalSumSelector: '[data-el="total-sum"]',
+        toOrderBtnSelector: '[data-el="to-order-btn"]',
     });
-    orderManager.init();
-    window.orderManager = orderManager;
+    basketUI.init();
+    window.basketUI = basketUI;
+
 
 
     // Создаём инстанс менеджера по работе с корзиной в localstorage
@@ -34,16 +32,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    // Работа с DOM корзины
-    const basketUI = new BasketUI({
-        counterSelector: '[data-el="items-counter"]',
-        basketItemTotalSumSelector: '[data-el="basket-item-total-sum"]',
-        clearBasketBtnSelector: '[data-el="clear-basket"]',
-        totalSumWithDiscountSelector: '[data-el="total-sum-without-discount"]',
-        totalDiscountSelector: '[data-el="total-discount"]',
-        totalSumSelector: '[data-el="total-sum"]',
-        toOrderBtnSelector: '[data-el="to-order-btn"]',
+
+    // Создаём инстанс менеджера по работе со страницей оформления заказаы
+    const orderManager = new OrderManager({
+        containerId: 'order-items',
+        renderEndpoint: '/api/order-render-products.php',
+        storageKey: 'products_data',
+        orderKey: 'order_data',
+        formID: 'order-form',
+        preloader: preloader,
+        afterRenderCallback: () => {
+            basketManager.init();
+            window.basketManager = basketManager;
+        }
     });
-    basketUI.init();
-    window.basketUI = basketUI;
+    orderManager.init();
+    window.orderManager = orderManager;
 })

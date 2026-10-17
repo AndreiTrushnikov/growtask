@@ -102,7 +102,7 @@ class BasketUI {
      * Тогглит дизейбл у кнопки перехода на страницу заказа
      */
     toggleOrderPossibility() {
-        document.querySelector(this.toOrderBtnSelector).classList.toggle(this.disableSelector);
+        document.querySelector(this.toOrderBtnSelector)?.classList.toggle(this.disableSelector);
     }
 
     showClearBasket() {

@@ -8,7 +8,8 @@ class OrderManager {
      * @param {string}   options.containerId        - ID контейнера для отрисовки
      * @param {string}   options.renderEndpoint     - URL PHP-рендера корзины
      * @param {string}   options.submitEndpoint     - URL отправки заявки
-     * @param {string}   options.storageKey         - Ключ в localStorage
+     * @param {string}   options.storageKey         - Ключ корзины в localStorage
+     * @param {string}   options.orderKey           - Ключ заказа в localStorage
      * @param {Function} options.afterRenderCallback- Коллбэк после отрисовки
      * @param {string}   options.formID             - ID формы
      * @param {string}   options.preloader          - Прелоадер
@@ -20,6 +21,7 @@ class OrderManager {
         this.renderEndpoint = options.renderEndpoint || '/api/order-render-products.php';
         this.submitEndpoint = options.submitEndpoint || '/api/success.php';
         this.storageKey = options.storageKey || 'products_data';
+        this.orderKey = options.orderKey || 'order_data';
         this.formID = options.formID || 'order-form';
         this.preloader = options.preloader || null;
 
@@ -280,6 +282,22 @@ class OrderManager {
      * @param {Object} result - ответ сервера
      */
     createOrder(result) {
+        this.saveToStorage(result);
         console.log('[OrderManager] Заказ создан:', result);
+    }
+
+
+
+    /**
+     * Сохранение заказа в localStorage
+     */
+    saveToStorage(result) {
+        console.log('result',result);
+        try {
+            localStorage.setItem(this.orderKey, JSON.stringify(result));
+            console.log('[OrderManager] Корзина сохранена в localStorage');
+        } catch (e) {
+            console.error('[BasketManager] Ошибка сохранения корзины:', e);
+        }
     }
 }

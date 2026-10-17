@@ -1,31 +1,4 @@
 <?php
-///**
-// * /api/success.php — просто заглушка, псевдо-проверка формы
-// * Всегда возвращает {"success": true, ...}
-// */
-//
-//declare(strict_types=1);
-//
-//header('Content-Type: application/json; charset=utf-8');
-//header('X-Content-Type-Options: nosniff');
-//
-//if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-//    http_response_code(405);
-//    echo json_encode(['success' => false, 'error' => 'Method not allowed'], JSON_UNESCAPED_UNICODE);
-//    exit;
-//}
-//
-//usleep(300_000); // 0.3 сек
-//
-//http_response_code(200);
-//echo json_encode([
-//    'success'  => true,
-//    'order_id' => 'STUB-' . date('Ymd-His') . '-' . random_int(1000, 9999),
-//    'message'  => 'Заявка принята',
-//    'data' => $_POST,
-//], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-
-
 /**
  * /api/success.php — просто заглушка, псевдо-проверка формы
  * Всегда возвращает {"success": true, ...}
@@ -99,7 +72,7 @@ if (isset($data['items'])) {
 http_response_code(200);
 echo json_encode([
     'success' => true,
-    'order_id' => 'STUB-' . date('Ymd-His') . '-' . random_int(1000, 9999),
+    'order_id' => 'order-' . date('Ymd-His') . '-' . random_int(1000, 9999),
     'message' => 'Заявка принята',
     'data' => $data,
 ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
