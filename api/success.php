@@ -72,7 +72,7 @@ if (isset($data['items'])) {
 http_response_code(200);
 echo json_encode([
     'success' => true,
-    'order_id' => 'order-' . date('Ymd-His') . '-' . random_int(1000, 9999),
+    'order_id' => date('Ymd-His') . '-' . random_int(1000, 9999),
     'message' => 'Заявка принята',
     'data' => $data,
 ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);

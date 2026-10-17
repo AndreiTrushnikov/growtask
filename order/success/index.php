@@ -10,7 +10,7 @@ $page="Успешный заказ";
 <div class="content">
     <div class="success-page-wrapper">
         <div class="container">
-            <div class="success-page">
+            <div class="success-page" id="success-page">
                 <div class="success-page__icon">
                     <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M30.4885 12.155C31.1394 11.5041 32.1944 11.5041 32.8453 12.155C33.4961 12.8058 33.4961 13.8609
@@ -21,8 +21,8 @@ $page="Успешный заказ";
                 </div>
 
                 <div class="success-page__info">
-                    <div class="success-page__title">
-                        Заказ №<span>001</span> успешно создан
+                    <div class="success-page__title skeleton">
+                        Заказ №<span id="order-number">000</span> успешно создан
                     </div>
                     <div class="success-page__subtitle">
                         Статус заказа вы можете отслеживать в личном кабинете
@@ -34,5 +34,5 @@ $page="Успешный заказ";
         </div>
     </div>
 </div>
-
+<script src="script.js"></script>
 <?php require_once  $_SERVER['DOCUMENT_ROOT'] . '/Layout/Blocks/Footer/index.php'; ?>

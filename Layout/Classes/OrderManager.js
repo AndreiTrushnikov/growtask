@@ -292,7 +292,6 @@ class OrderManager {
      * Сохранение заказа в localStorage
      */
     saveToStorage(result) {
-        console.log('result',result);
         try {
             localStorage.setItem(this.orderKey, JSON.stringify(result));
             console.log('[OrderManager] Корзина сохранена в localStorage');

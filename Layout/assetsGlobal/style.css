@@ -822,6 +822,8 @@ textarea {
     padding: 10px 4px;
     color: var(--main-gray--darker);
     background-color: var(--main-gray--lighter);
+    pointer-events: none;
+    user-select: none;
 }
 
 .basket-item__buttons {
