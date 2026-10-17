@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
         containerId: 'order-items',
         renderEndpoint: '/api/order-render-products.php',
         storageKey: 'products_data',
+        formID: 'order-form',
         afterRenderCallback: () => {
             basketManager.init();
             window.basketManager = basketManager;

@@ -253,6 +253,7 @@ textarea {
 /* Accent Btn */
 .btn.btn--accent {
     background-color: var(--main-color1--main);
+    color: var(--text-icon-gray--white);
 }
 .btn.btn--accent:active,
 .btn.btn--accent:visited {
@@ -1280,6 +1281,19 @@ textarea {
     .custom-input {
         min-height: 40px;
     }
+}
+
+.invalid.just-validate-error-label {
+    font-size: 10px !important;
+    color: var(--states-error--dark) !important;
+
+    position: absolute !important;
+    top: calc(100% - 4px) !important;
+    right: 0 !important;
+}
+
+.custom-input--error {
+    border-color: var(--states-error--dark) !important;
 }
 
 

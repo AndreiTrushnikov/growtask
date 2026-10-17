@@ -17,7 +17,7 @@
                         <span class="custom-label-inner">
                             <span>Имя *</span>
                             <span class="custom-el-wrapper">
-                                <input type="text" class="custom-el custom-input" name="NAME" placeholder="Иван">
+                                <input type="text" class="custom-el custom-input" name="first-name" id="first-name" placeholder="Иван">
                                 <svg class="custom-input-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M18.2929 4.29289C18.6834 3.90263 19.3165 3.90246 19.707 4.29289C20.0974 4.68333 20.0972 5.31641 19.707 5.70695L13.414
                                      11.9999L19.707 18.2929C20.0973 18.6834 20.0974 19.3165 19.707 19.707C19.3165 20.0973 18.6834 20.0973 18.2929 19.707L11.9999
@@ -32,7 +32,7 @@
                         <span class="custom-label-inner">
                             <span>Фамилия *</span>
                             <span class="custom-el-wrapper">
-                                <input type="text" class="custom-el custom-input" name="SURNAME" placeholder="Иванов">
+                                <input type="text" class="custom-el custom-input" name="last-name" id="last-name" placeholder="Иванов">
                                 <svg class="custom-input-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M18.2929 4.29289C18.6834 3.90263 19.3165 3.90246 19.707 4.29289C20.0974 4.68333 20.0972 5.31641 19.707 5.70695L13.414
                                      11.9999L19.707 18.2929C20.0973 18.6834 20.0974 19.3165 19.707 19.707C19.3165 20.0973 18.6834 20.0973 18.2929 19.707L11.9999
@@ -93,7 +93,7 @@
                                               6.56667 18.709 5.28415C17.425 4.00187 15.743 3.19453 13.9395 2.99411C13.3906 2.93314
                                               12.9947 2.4385 13.0557 1.88962C13.1167 1.34071 13.6113 0.944853 14.1602 1.00583Z" fill="#CCCCCC"/>
                                 </svg>
-                                <input type="text" class="custom-el custom-input" name="PHONE" placeholder="+7800555555">
+                                <input type="text" class="custom-el custom-input" name="phone" id="phone" placeholder="+7800555555">
                                 <svg class="custom-input-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M18.2929 4.29289C18.6834 3.90263 19.3165 3.90246 19.707 4.29289C20.0974 4.68333 20.0972 5.31641 19.707 5.70695L13.414
                                      11.9999L19.707 18.2929C20.0973 18.6834 20.0974 19.3165 19.707 19.707C19.3165 20.0973 18.6834 20.0973 18.2929 19.707L11.9999
@@ -133,7 +133,7 @@
                                                  7.2604C22.6634 7.41354 22.7671 7.58492 22.8441 7.76821L22.9125 7.95473L22.9437
                                                  8.07582C23.0079 8.35928 23.0004 8.64643 23.0004 8.86879V16.1998Z" fill="#CCCCCC"/>
                                 </svg>
-                                <input type="text" class="custom-el custom-input" name="EMAIL" placeholder="mail@example.com">
+                                <input type="text" class="custom-el custom-input" name="email" id="email" placeholder="mail@example.com">
                                 <svg class="custom-input-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M18.2929 4.29289C18.6834 3.90263 19.3165 3.90246 19.707 4.29289C20.0974 4.68333 20.0972 5.31641 19.707 5.70695L13.414
                                      11.9999L19.707 18.2929C20.0973 18.6834 20.0974 19.3165 19.707 19.707C19.3165 20.0973 18.6834 20.0973 18.2929 19.707L11.9999
@@ -166,7 +166,7 @@
                     <span class="custom-label-inner">
                         <span>Комментарий к заказу</span>
                         <span class="custom-el-wrapper">
-                            <textarea class="custom-el custom-textarea" name="COMMENT" placeholder="Напишите свои пожелания..."></textarea>
+                            <textarea class="custom-el custom-textarea" name="comment" id="comment" placeholder="Напишите свои пожелания..."></textarea>
                         </span>
                     </span>
                 </label>
