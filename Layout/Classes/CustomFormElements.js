@@ -6,6 +6,7 @@
 class CustomFormElements {
     constructor() {
         this.customLabels = document.querySelectorAll('.custom-label');
+        this.clearInputBtnSelector = '[data-el="clear-input"]';
     }
 
     /**
@@ -20,6 +21,11 @@ class CustomFormElements {
                 const placeholder = label.querySelector('.placeholder');
                 if (placeholder && el.value !== "") {
                     placeholder.classList.add('clicked');
+                }
+
+                const clearBtn = label.querySelector(this.clearInputBtnSelector);
+                if (clearBtn) {
+                    clearBtn.addEventListener('click', this._ref_handleClearInput); // Почему не отрабатывает?
                 }
 
                 if (label.classList.contains('disabled')) return;
@@ -65,6 +71,33 @@ class CustomFormElements {
 
         const elTextarea = label.querySelector('textarea');
         if (elTextarea) elTextarea.focus();
+    }
+
+
+
+    /**
+     *  Рефы и хендлеры для обработки очистки значения инпута
+     * @param e
+     * @private
+     */
+    _ref_handleClearInput = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        this.handleClearInput(e);
+    }
+    handleClearInput(e) {
+        const btn = e.currentTarget;
+        const label = btn.closest('.custom-label');
+        if (!label) return;
+
+        const input = label.querySelector('input, textarea');
+        if (input) {
+            input.value = '';
+            input.dispatchEvent(new Event('input', { bubbles: true }));
+        }
+
+        const placeholder = label.querySelector('.placeholder');
+        if (placeholder) placeholder.classList.remove('clicked');
     }
 }
 
