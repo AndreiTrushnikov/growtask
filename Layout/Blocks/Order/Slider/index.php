@@ -1,8 +1,7 @@
 <?// Slider ?>
 <div class="order-block-wrapper">
     <div class="order-block">
-        <div class="order-block__title">
-            <span>192</span> товаров
+        <div class="order-block__title" data-el="items-counter" data-type="with-word">
         </div>
         <div class="order-items" id="order-items"></div>
         <a href="/basket/" class="btn btn--grey btn--middle w-fit">
