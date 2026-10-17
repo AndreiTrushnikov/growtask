@@ -18,6 +18,10 @@ class BasketUI {
         this.disableSelector = 'disabled';
 
         this.counterElements = null;
+
+        this.totalSumWithoutDiscountElements = document.querySelectorAll(this.totalSumWithoutDiscountSelector);
+        this.totalDiscountElements = document.querySelectorAll(this.totalDiscountSelector);
+        this.totalSumElements = document.querySelectorAll(this.totalSumSelector);
     }
 
 
@@ -39,6 +43,8 @@ class BasketUI {
         this.counterElements.forEach(el => {
             if (el.dataset.type && el.dataset.type === 'with-word') {
                 el.textContent = declineWord(count, 'товар', 'товара', 'товаров');
+            } else if (el.dataset.type && el.dataset.type === 'hidden-input') {
+                el.value = count;
             } else {
                 el.textContent = count;
             }
@@ -86,14 +92,26 @@ class BasketUI {
      * @param {{}} sums
      */
     updateTotalSums(sums) {
-        document.querySelectorAll(this.totalSumWithoutDiscountSelector).forEach(el => {
-            el.textContent = sums.totalSumWithoutDiscount;
+        this.totalSumWithoutDiscountElements.forEach(el => {
+            if (el.dataset.type && el.dataset.type === 'hidden-input') {
+                el.value = sums.totalSumWithoutDiscount;;
+            } else {
+                el.textContent = sums.totalSumWithoutDiscount;
+            }
         })
-        document.querySelectorAll(this.totalDiscountSelector).forEach(el => {
-            el.textContent = sums.discount;
+        this.totalDiscountElements.forEach(el => {
+            if (el.dataset.type && el.dataset.type === 'hidden-input') {
+                el.value = sums.totalSumWithoutDiscount;;
+            } else {
+                el.textContent = sums.discount;
+            }
         })
-        document.querySelectorAll(this.totalSumSelector).forEach(el => {
-            el.textContent = sums.totalSum;
+        this.totalSumElements.forEach(el => {
+            if (el.dataset.type && el.dataset.type === 'hidden-input') {
+                el.value = sums.totalSumWithoutDiscount;;
+            } else {
+                el.textContent = sums.totalSum;
+            }
         })
     }
 

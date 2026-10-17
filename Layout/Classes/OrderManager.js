@@ -253,7 +253,7 @@ class OrderManager {
             if (!result.success) {
                 throw new Error(result.error || 'Ошибка сервера');
             }
-
+            console.log('result',result)
             this.createOrder(result);
             form.reset();
 
@@ -294,7 +294,7 @@ class OrderManager {
     saveToStorage(result) {
         try {
             localStorage.setItem(this.orderKey, JSON.stringify(result));
-            console.log('[OrderManager] Корзина сохранена в localStorage');
+            console.log('[OrderManager] Заказ сохранен в localStorage');
         } catch (e) {
             console.error('[BasketManager] Ошибка сохранения корзины:', e);
         }

@@ -31,6 +31,10 @@ $page="Оформление заказа";
     <div class="order-wrapper">
         <div class="order">
             <form action="" name="ORDER_FORM" id="order-form" class="order-form">
+                <input type="hidden" name="total-quantity" data-el="total-sum" data-type="hidden-input">
+                <input type="hidden" name="total-discount" data-el="total-discount" data-type="hidden-input">
+                <input type="hidden" name="total-sum-without-discount" data-el="total-sum-without-discount" data-type="hidden-input">
+                <input type="hidden" name="total-items-counter" data-el="items-counter" data-type="hidden-input">
                 <?php include $_SERVER['DOCUMENT_ROOT'] . "/Layout/Blocks/Order/Slider/index.php";?>
                 <?php include $_SERVER['DOCUMENT_ROOT'] . "/Layout/Blocks/Order/Customer/index.php";?>
                 <?php include $_SERVER['DOCUMENT_ROOT'] . "/Layout/Blocks/Order/Payment/index.php";?>
