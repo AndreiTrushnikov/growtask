@@ -11,5 +11,7 @@
 <script src="/Layout/Classes/OrderManager.js"></script>
 <script src="/Layout/Classes/OrderSuccessManager.js"></script>
 
+<script src="/Layout/Classes/PromocodesManager.js"></script>
+
 
 <script src="/Layout/assetsGlobal/script.js"></script>

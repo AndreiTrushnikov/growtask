@@ -31,6 +31,15 @@ document.addEventListener('DOMContentLoaded', () => {
         },
     });
 
+    const promocodesManager = new PromocodesManager({
+        url: '/api/promocode-check.php',
+        blockSelector: '[data-el="promocode-block"]',
+        inputSelector: '[data-el="promocode-input"]',
+        btnSelector:   '[data-el="promocode-btn"]',
+        enteredPromocodeSelector:   '[data-el="entered-promocode"]',
+    });
+    promocodesManager.init();
+    window.promocodesManager = promocodesManager;
 
 
     // Создаём инстанс менеджера по работе со страницей оформления заказаы

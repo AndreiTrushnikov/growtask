@@ -1846,3 +1846,45 @@ textarea {
         transform: rotate(360deg);
     }
 }
+
+
+/* Promocode */
+.entered-promocode {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border-radius: 8px;
+
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 150%;
+    text-align: center;
+
+    margin-top: 12px;
+}
+
+.entered-promocode--success {
+    color: var(--text-icon-gray--dark);
+    background: var(--states-success--light);
+}
+
+.entered-promocode--error {
+    color: var(--text-icon-gray--white);
+    background: var(--text-color1--main);;
+}
+
+.entered-promocode__remove {
+    border: 0;
+    background: transparent;
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+    color: inherit;
+    padding: 0 2px;
+    margin-top: -1px;
+}
+
+.entered-promocode[hidden] {
+    display: none;
+}

@@ -56,6 +56,15 @@ document.addEventListener('DOMContentLoaded', () => {
         basketItemCheckboxSelector: '[data-el="basket-item-checkbox"]',
     })
 
+    const promocodesManager = new PromocodesManager({
+        url: '/api/promocode-check.php',
+        blockSelector: '[data-el="promocode-block"]',
+        inputSelector: '[data-el="promocode-input"]',
+        btnSelector:   '[data-el="promocode-btn"]',
+        enteredPromocodeSelector:   '[data-el="entered-promocode"]',
+    });
+    promocodesManager.init();
+    window.promocodesManager = promocodesManager;
 
     document.addEventListener('click', (e) => {
         const target = e.target.closest('[data-el]');
