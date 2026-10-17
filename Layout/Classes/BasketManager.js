@@ -24,7 +24,7 @@ class BasketManager {
      */
     init() {
         this.loadFromStorage();
-        console.log(`[BasketManager] Инициализирован, товаров в корзине: ${this.items.length}`);
+        // console.log(`[BasketManager] Инициализирован, товаров в корзине: ${this.items.length}`);
     }
 
 
@@ -37,7 +37,7 @@ class BasketManager {
             const cached = localStorage.getItem(this.storageKey);
             if (cached) {
                 this.items = JSON.parse(cached);
-                console.log('[BasketManager] Корзина загружена из localStorage');
+                // console.log('[BasketManager] Корзина загружена из localStorage');
             } else {
                 this.items = [];
             }
@@ -62,7 +62,7 @@ class BasketManager {
     saveToStorage() {
         try {
             localStorage.setItem(this.storageKey, JSON.stringify(this.items));
-            console.log('[BasketManager] Корзина сохранена в localStorage');
+            // console.log('[BasketManager] Корзина сохранена в localStorage');
 
             // Вызываем callback при обновлении
             if (this.onUpdateCallback && typeof this.onUpdateCallback === 'function') {
@@ -86,7 +86,7 @@ class BasketManager {
 
         if (this.items.length < initialLength) {
             basketUI.removeFromDom(productId);
-            console.log(`[BasketManager] Удалён товар ${productId}`);
+            // console.log(`[BasketManager] Удалён товар ${productId}`);
             this.saveToStorage();
 
             this.preloader.hide();
@@ -126,7 +126,7 @@ class BasketManager {
         basketUI.updateBasketItemTotalSum(productId, item);
         this.recalculateTotalSum();
 
-        console.log(`[BasketManager] Количество товара ${productId} изменено на ${quantity}`);
+        // console.log(`[BasketManager] Количество товара ${productId} изменено на ${quantity}`);
         this.saveToStorage();
 
         this.preloader.hide();

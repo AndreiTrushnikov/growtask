@@ -119,7 +119,7 @@ class OrderManager {
             }
 
             this.container.innerHTML = result.html;
-            console.log('[OrderManager] Товары успешно отрисованы');
+            // console.log('[OrderManager] Товары успешно отрисованы');
         } catch (error) {
             console.error('[OrderManager] Ошибка рендеринга:', error);
             this.showError('Ошибка отображения корзины');
@@ -253,7 +253,7 @@ class OrderManager {
             if (!result.success) {
                 throw new Error(result.error || 'Ошибка сервера');
             }
-            console.log('result',result)
+
             this.createOrder(result);
             form.reset();
 
@@ -283,7 +283,7 @@ class OrderManager {
      */
     createOrder(result) {
         this.saveToStorage(result);
-        console.log('[OrderManager] Заказ создан:', result);
+        // console.log('[OrderManager] Заказ создан:', result);
     }
 
 
@@ -294,7 +294,7 @@ class OrderManager {
     saveToStorage(result) {
         try {
             localStorage.setItem(this.orderKey, JSON.stringify(result));
-            console.log('[OrderManager] Заказ сохранен в localStorage');
+            // console.log('[OrderManager] Заказ сохранен в localStorage');
         } catch (e) {
             console.error('[BasketManager] Ошибка сохранения корзины:', e);
         }

@@ -80,7 +80,7 @@ class OrderSuccessManager {
     saveToStorage(key, result, success_message, failure_message) {
         try {
             localStorage.setItem(key, JSON.stringify(result));
-            console.log(success_message);
+            // console.log(success_message);
         } catch (e) {
             console.error(failure_message, e);
         }

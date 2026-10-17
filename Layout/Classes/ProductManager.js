@@ -191,7 +191,7 @@ class ProductManager {
             }
 
             this.container.innerHTML = result.html;
-            console.log('[ProductManager] Товары успешно отрендерены');
+            // console.log('[ProductManager] Товары успешно отрендерены');
 
         } catch (error) {
             console.error('[ProductManager] Ошибка рендеринга:', error);

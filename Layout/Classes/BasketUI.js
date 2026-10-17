@@ -49,7 +49,7 @@ class BasketUI {
                 el.textContent = count;
             }
 
-            console.log(`[BasketUI] Счётчик обновлён: ${count}`);
+            // console.log(`[BasketUI] Счётчик обновлён: ${count}`);
         })
     }
 
