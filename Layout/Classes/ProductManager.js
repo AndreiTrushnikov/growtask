@@ -9,6 +9,7 @@ class ProductManager {
      * @param {string} options.apiEndpoint - URL для получения данных
      * @param {string} options.renderEndpoint - URL для рендеринга HTML
      * @param {string} options.storageKey - Ключ для localStorage
+     * @param {string} options.preloader - Экземпляр прелоадера
      * @param {number} options.cacheDuration - Время жизни кэша в миллисекундах (по умолчанию 1 час)
      * @param {number} options.afterInitCallback - Функция вызывается после загрузки данных с удаленного сервера
      */
@@ -20,7 +21,9 @@ class ProductManager {
         this.cacheDuration = options.cacheDuration || 3600 * 1000;
 
         this.storageKey = options.storageKey || 'products_data';
-        this.expiresKey = this.storageKey + '_expires_at'; //
+        this.expiresKey = this.storageKey + '_expires_at';
+
+        this.preloader = options.preloader;
 
         this.afterInitCallback = options.afterInitCallback || null;
 
@@ -38,7 +41,7 @@ class ProductManager {
             console.error(`[ProductManager] Контейнер с ID "${this.containerId}" не найден`);
             return;
         }
-
+        this.preloader.show();
         this.showLoading();
 
         // Проверяем localStorage
@@ -136,6 +139,8 @@ class ProductManager {
         } catch (error) {
             console.error('[ProductManager] Ошибка загрузки:', error);
             this.showError('Ошибка загрузки товаров');
+        } finally {
+            this.preloader.hide();
         }
     }
 
@@ -181,6 +186,7 @@ class ProductManager {
             console.error('[ProductManager] Ошибка рендеринга:', error);
             this.showError('Ошибка отображения товаров');
         } finally {
+            this.preloader.hide();
             SkeletonManager.hide();
         }
     }

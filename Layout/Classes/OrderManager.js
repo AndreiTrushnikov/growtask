@@ -11,6 +11,7 @@ class OrderManager {
      * @param {string}   options.storageKey         - Ключ в localStorage
      * @param {Function} options.afterRenderCallback- Коллбэк после отрисовки
      * @param {string}   options.formID             - ID формы
+     * @param {string}   options.preloader          - Прелоадер
      * @param {Function} options.onSuccessCallback  - Коллбэк после успешной отправки (result)
      * @param {Function} options.onErrorCallback    - Коллбэк при ошибке (error)
      */
@@ -20,6 +21,7 @@ class OrderManager {
         this.submitEndpoint = options.submitEndpoint || '/api/success.php';
         this.storageKey = options.storageKey || 'products_data';
         this.formID = options.formID || 'order-form';
+        this.preloader = options.preloader || null;
 
         this.afterRenderCallback = options.afterRenderCallback || null;
         this.onSuccessCallback = options.onSuccessCallback || null;
@@ -29,6 +31,8 @@ class OrderManager {
         this.form = null;
         this.validation = null;
         this._validatorInitialized = false;
+
+
     }
 
 
@@ -48,7 +52,7 @@ class OrderManager {
             console.error(`[OrderManager] Форма с ID "${this.formID}" не найдена`);
             return;
         }
-
+        this.preloader.show();
         this.validate();
 
         if (this.container) {
@@ -92,6 +96,7 @@ class OrderManager {
      */
     async renderCheckout(items) {
         try {
+            this.preloader.show();
             // Отправляем данные в PHP для рендеринга HTML
             const response = await fetch(this.renderEndpoint, {
                 method: 'POST',
@@ -116,6 +121,8 @@ class OrderManager {
         } catch (error) {
             console.error('[OrderManager] Ошибка рендеринга:', error);
             this.showError('Ошибка отображения корзины');
+        } finally {
+            this.preloader.hide();
         }
     }
 
@@ -221,6 +228,7 @@ class OrderManager {
         }
 
         try {
+            this.preloader.show();
             const formData = new FormData(form);
 
             const items = this.getFromLocalStorage() || [];
@@ -250,12 +258,15 @@ class OrderManager {
             if (typeof this.onSuccessCallback === 'function') {
                 this.onSuccessCallback(result);
             }
+
+            window.location = "/order/success/";
         } catch (error) {
             console.error('Ошибка отправки формы:', error);
             if (typeof this.onErrorCallback === 'function') {
                 this.onErrorCallback(error);
             }
         } finally {
+            this.preloader.hide();
             if (submitBtn) {
                 submitBtn.disabled = false;
                 submitBtn.textContent = submitBtn.dataset.originalText;

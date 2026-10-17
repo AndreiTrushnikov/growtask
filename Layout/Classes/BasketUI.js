@@ -4,6 +4,7 @@
  */
 class BasketUI {
     constructor(options = {}) {
+        this.itemsContainerSelector = options.itemsContainerSelector || "basket-items";
         this.countersSelector = options.counterSelector || '[data-el="items-counter"]';
         this.basketItemTotalSumSelector = options.basketItemTotalSumSelector || '[data-el="basket-item-total-sum"]';
         this.clearBasketBtnSelector = options.clearBasketBtnSelector || '[data-el="clear-basket"]';
@@ -102,5 +103,9 @@ class BasketUI {
      */
     toggleOrderPossibility() {
         document.querySelector(this.toOrderBtnSelector).classList.toggle(this.disableSelector);
+    }
+
+    showClearBasket() {
+        document.getElementById(this.itemsContainerSelector).innerHTML = '<p>Корзина пуста.</p>';
     }
 }

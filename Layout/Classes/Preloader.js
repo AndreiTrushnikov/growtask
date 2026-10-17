@@ -1,4 +1,4 @@
-class PagePreloader {
+class Preloader {
     constructor() {
         this.preloader = null;
         this.init();
@@ -7,7 +7,6 @@ class PagePreloader {
     init() {
         // Проверяем, есть ли класс 'has-preloader' у body
         if (document.body.classList.contains('has-preloader')) {
-            this.createPreloader();
             this.show();
 
             // Проверяем, загружена ли страница уже
@@ -22,17 +21,21 @@ class PagePreloader {
     createPreloader() {
         // Создаем элемент прелоадера
         this.preloader = document.createElement('div');
-        this.preloader.className = 'preloader';
+        this.preloader.className = 'preloader hidden';
 
-        // Вставляем SVG шестерёнку
-        this.preloader.innerHTML = `
-          <svg class="gear" width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-              <g stroke-width="2" transform="translate(0, 0)">
-                <circle cx="32" cy="32" r="9" fill="none" stroke="#fff" stroke-linecap="square" stroke-miterlimit="10" />
-                <path d="M62,36V28l-8.595-1.074a21.825,21.825,0,0,0-2.681-6.474l5.317-6.836L50.384,7.959l-6.836,5.317A21.9,21.9,0,0,0,37.074,10.6L36,2H28l-1.074,8.6a21.825,21.825,0,0,0-6.474,2.681L13.616,7.959,7.959,13.616l5.317,6.836A21.9,21.9,0,0,0,10.6,26.926L2,28v8l8.6,1.074a21.825,21.825,0,0,0,2.681,6.474L7.959,50.384l5.657,5.657,6.836-5.317a21.9,21.9,0,0,0,6.474,2.681L28,62h8l1.074-8.595a21.825,21.825,0,0,0,6.474-2.681l6.836,5.317,5.657-5.657-5.317-6.836a21.9,21.9,0,0,0,2.681-6.474Z"
-                      fill="none" stroke="#fff" stroke-linecap="square" stroke-miterlimit="10" />
-              </g>
-          </svg>
+        // Вставляем SVG
+        this.preloader.innerHTML = `            
+            <svg width="128" height="128" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'>
+                <circle fill='#F23051' stroke='#F23051' stroke-width='3' r='15' cx='40' cy='100'>
+                    <animate attributeName='opacity' calcMode='spline' dur='1.3' values='1;0;1;' keySplines='.5 0 .5 1;.5 0 .5 1' repeatCount='indefinite' begin='-.4'></animate>
+                </circle>
+                <circle fill='#F23051' stroke='#F23051' stroke-width='3' r='15' cx='100' cy='100'>
+                    <animate attributeName='opacity' calcMode='spline' dur='1.3' values='1;0;1;' keySplines='.5 0 .5 1;.5 0 .5 1' repeatCount='indefinite' begin='-.2'></animate>
+                </circle>
+                <circle fill='#F23051' stroke='#F23051' stroke-width='3' r='15' cx='160' cy='100'>
+                    <animate attributeName='opacity' calcMode='spline' dur='1.3' values='1;0;1;' keySplines='.5 0 .5 1;.5 0 .5 1' repeatCount='indefinite' begin='0'></animate>
+                </circle>
+            </svg>
         `;
 
         // Добавляем прелоадер в тело документа
@@ -40,17 +43,29 @@ class PagePreloader {
     }
 
     show() {
-        if (this.preloader) {
-            this.preloader.classList.remove('hidden');
+        // Если элемента нет — создаём его
+        if (!this.preloader || !this.preloader.parentNode) {
+            this.createPreloader();
         }
+        // Показываем на следующем кадре, чтобы сработала CSS-анимация появления
+        requestAnimationFrame(() => {
+            if (this.preloader) {
+                this.preloader.classList.remove('hidden');
+            }
+        });
     }
 
     hide() {
         if (this.preloader) {
             this.preloader.classList.add('hidden');
+            const el = this.preloader;
             setTimeout(() => {
-                if (this.preloader && this.preloader.parentNode) {
-                    this.preloader.parentNode.removeChild(this.preloader);
+                if (el && el.parentNode) {
+                    el.parentNode.removeChild(el);
+                }
+                // Сбрасываем ссылку, чтобы следующий show() создал элемент заново
+                if (this.preloader === el) {
+                    this.preloader = null;
                 }
             }, 300); // Удаление после завершения анимации
         }

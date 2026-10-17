@@ -1,9 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Инициализируем прелоадер
+    const preloader = new Preloader();
+    preloader.init();
+
+
+    // Создаём инстанс менеджера по работе со страницей оформления заказаы
     const orderManager = new OrderManager({
         containerId: 'order-items',
         renderEndpoint: '/api/order-render-products.php',
         storageKey: 'products_data',
         formID: 'order-form',
+        preloader: preloader,
         afterRenderCallback: () => {
             basketManager.init();
             window.basketManager = basketManager;
@@ -16,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Создаём инстанс менеджера по работе с корзиной в localstorage
     const basketManager = new BasketManager({
         storageKey: 'products_data',
+        preloader: preloader,
         onUpdateCallback: () => {
             basketUI.updateCounter(basketManager.getCount());
             basketUI.updateTotalSums(basketManager.recalculateTotalSum());

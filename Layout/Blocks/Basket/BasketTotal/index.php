@@ -17,7 +17,7 @@ if ($page === 'Корзина') {
         <div class="basket-total__results">
             <div class="basket-total__result skeleton">
                 <span>
-                    <span data-el="items-counter" data-type="with-word"></span>:
+                    <span data-el="items-counter" data-type="with-word">0 товаров</span>:
                 </span>
                 <span>
                     <span data-el="total-sum-without-discount">0</span> ₽

@@ -5,12 +5,14 @@ class BasketManager {
     /**
      * @param {Object} options - Настройки
      * @param {string} options.storageKey - Ключ для localStorage корзины
+     * @param {string} options.preloader - Прелоадер
      * @param {string} options.basketItemsCounters - Селектор мест, где должны обновляться количество элементов в корзине
      * @param {string} options.onUpdateCallback - Функция вызывается при изменении корзины
      */
     constructor(options = {}) {
         this.storageKey = options.storageKey || 'products_data';
         this.onUpdateCallback = options.onUpdateCallback || null; // Колбек для внесения изменений на страницу во время изменения корзины
+        this.preloader = options.preloader;
 
         this.items = [];
     }
@@ -42,6 +44,8 @@ class BasketManager {
         } catch (e) {
             console.error('[BasketManager] Ошибка загрузки корзины:', e);
             this.items = [];
+        } finally {
+            this.preloader.hide();
         }
 
         // Вызываем коллбэк для первоначальной загрузки
@@ -76,6 +80,7 @@ class BasketManager {
      * @param {string|number} productId - ID товара
      */
     remove(productId) {
+        this.preloader.show();
         const initialLength = this.items.length;
         this.items = this.items.filter(item => item.id !== productId);
 
@@ -83,10 +88,14 @@ class BasketManager {
             basketUI.removeFromDom(productId);
             console.log(`[BasketManager] Удалён товар ${productId}`);
             this.saveToStorage();
+
+            this.preloader.hide();
             return true;
         }
 
         console.warn(`[BasketManager] Товар ${productId} не найден в корзине`);
+
+        this.preloader.hide();
         return false;
     }
 
@@ -98,6 +107,7 @@ class BasketManager {
      * @param {number} quantity - Новое количество
      */
     updateQuantity(productId, quantity) {
+        this.preloader.show();
         const item = this.items.find(item => item.id === productId);
 
         if (!item) {
@@ -118,6 +128,8 @@ class BasketManager {
 
         console.log(`[BasketManager] Количество товара ${productId} изменено на ${quantity}`);
         this.saveToStorage();
+
+        this.preloader.hide();
         return true;
     }
 
@@ -165,9 +177,12 @@ class BasketManager {
      * Очистка всей корзины
      */
     clearBasket() {
+        this.preloader.show();
         this.items.forEach(item => {
             this.remove(item.id);
         })
+        basketUI.showClearBasket();
+        this.preloader.hide();
     }
 
 

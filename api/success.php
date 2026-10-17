@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-usleep(300_000);
+usleep(1000000);
 
 
 /**
@@ -73,7 +73,6 @@ function normalizeValue($value)
 
         // Число
         if (is_numeric($trimmed)) {
-            // целое без потери точности
             if (preg_match('/^-?\d+$/', $trimmed)) {
                 return (int)$trimmed;
             }
