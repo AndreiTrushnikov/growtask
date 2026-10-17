@@ -53,7 +53,7 @@ if ($page === 'Корзина') {
                 </svg>
             </a>
         <? } else { ?>
-            <button  class="btn btn--accent btn--high w-100" type="submit" form="order-form">
+            <button  class="btn btn--accent btn--high w-100" type="submit" form="order-form" data-el="form-submit-btn">
                 <span>Оформить заказ</span>
             </button>
         <? } ?>

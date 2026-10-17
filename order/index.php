@@ -40,7 +40,7 @@ $page="Оформление заказа";
                 <?php include $_SERVER['DOCUMENT_ROOT'] . "/Layout/Blocks/Order/Payment/index.php";?>
                 <div class="line above-order-block-total-line"></div>
                 <div class="order-block-total">
-                    <button type="submit" class="btn btn--accent btn--high btn--big-padding w-fit">
+                    <button type="submit" class="btn btn--accent btn--high btn--big-padding w-fit" data-el="form-submit-btn">
                         <span>Оформить заказ</span>
                     </button>
                     <div class="order-block-total-info">
