@@ -12,7 +12,7 @@
 
         <div class="order-block__data">
             <div class="payment-options">
-                <div class="custom-radio payment-option">
+                <div class="custom-radio payment-option skeleton">
                     <input type="radio" id="online" name="payment" value="online" checked>
                     <label for="online" class="custom-radio-label">
                         <div class="payment-info">
@@ -51,7 +51,7 @@
                     </label>
                 </div>
 
-                <div class="custom-radio payment-option">
+                <div class="custom-radio payment-option skeleton">
                     <input type="radio" id="cash" name="payment" value="cash">
                     <label for="cash" class="custom-radio-label">
                         <div class="payment-info">

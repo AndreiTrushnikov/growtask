@@ -27,6 +27,14 @@ document.addEventListener("DOMContentLoaded", function () {
     // Работа с кастомными инпутами
     const customFormElements = new CustomFormElements();
     customFormElements.init();
+
+
+    // Инициализация скелетонов
+    new SkeletonLoader();
+
+
+    // Инициализация прелоадера
+    new PagePreloader();
 })
 
 

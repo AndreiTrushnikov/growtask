@@ -1,9 +1,9 @@
 <?// Slider ?>
 <div class="order-block-wrapper">
     <div class="order-block">
-        <div class="order-block__title" data-el="items-counter" data-type="with-word">
+        <div class="order-block__title skeleton" data-el="items-counter" data-type="with-word">
         </div>
-        <div class="order-items" id="order-items"></div>
+        <div class="order-items skeleton" id="order-items"></div>
         <a href="/basket/" class="btn btn--grey btn--middle w-fit">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M18.9998 13L7.41383 13L12.7068 18.293C13.0973 18.6835 13.0973 19.3165 12.7068 19.707C12.3163

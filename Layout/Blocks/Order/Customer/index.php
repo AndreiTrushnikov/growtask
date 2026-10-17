@@ -13,7 +13,7 @@
         <div class="order-block__data">
             <div class="form">
                 <div class="form-fields">
-                    <label class="custom-label">
+                    <label class="custom-label skeleton">
                         <span class="custom-label-inner">
                             <span>Имя *</span>
                             <span class="custom-el-wrapper">
@@ -28,7 +28,7 @@
                             </span>
                         </span>
                     </label>
-                    <label class="custom-label">
+                    <label class="custom-label skeleton">
                         <span class="custom-label-inner">
                             <span>Фамилия *</span>
                             <span class="custom-el-wrapper">
@@ -43,7 +43,7 @@
                             </span>
                         </span>
                     </label>
-                    <label class="custom-label custom-label--two-icons">
+                    <label class="custom-label custom-label--two-icons skeleton">
                         <span class="custom-label-inner">
                             <span>Телефон</span>
                             <span class="custom-el-wrapper">
@@ -104,7 +104,7 @@
                             </span>
                         </span>
                     </label>
-                    <label class="custom-label custom-label--two-icons">
+                    <label class="custom-label custom-label--two-icons skeleton">
                         <span class="custom-label-inner">
                             <span>Почта</span>
                             <span class="custom-el-wrapper">
@@ -162,7 +162,7 @@
                     </div>
                     <div class="line"></div>
                 </div>
-                <label class="custom-label">
+                <label class="custom-label skeleton">
                     <span class="custom-label-inner">
                         <span>Комментарий к заказу</span>
                         <span class="custom-el-wrapper">

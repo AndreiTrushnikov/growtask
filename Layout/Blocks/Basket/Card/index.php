@@ -6,7 +6,7 @@ if (empty($product)) {
 ?>
 <div class="basket-item-wrapper" id="<?=$product['id']?>" data-el="basket-item">
     <div class="basket-item">
-        <div class="basket-item__image">
+        <div class="basket-item__image skeleton">
             <label class="custom-checkbox basket-item-checkbox">
                 <input type="checkbox" class="custom-checkbox__input" data-el="basket-item-checkbox">
                 <span class="custom-checkbox__icon"></span>
@@ -20,7 +20,7 @@ if (empty($product)) {
             } ?>
             <img src="<?= $path; ?>" alt="<?= $name; ?>" title="<?= $name; ?>">
         </div>
-        <div class="basket-item__info">
+        <div class="basket-item__info skeleton">
             <div class="basket-item__sku">
                 <?= $product['sku']; ?>
             </div>
@@ -29,7 +29,7 @@ if (empty($product)) {
             </div>
         </div>
         <div class="basket-item__prices">
-            <div class="price">
+            <div class="price skeleton">
                 <? if (!empty($product['price'])) {?>
                 <div class="price__new">
                     <?= number_format($product['price'], 0, '.', ' '); ?> ₽
@@ -41,7 +41,7 @@ if (empty($product)) {
                 </div>
                 <? } ?>
             </div>
-            <div class="basket-item__buttons">
+            <div class="basket-item__buttons skeleton">
                 <div class="basket-item__buttons-inner">
                     <div class="btns-plus-minus">
                         <button class="btn btn--grey btns-plus-minus__minus" type="button" aria-label="Удалить" data-el="minus">

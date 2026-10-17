@@ -15,7 +15,7 @@ if ($page === 'Корзина') {
             <?=$basketTitle;?>
         </div>
         <div class="basket-total__results">
-            <div class="basket-total__result">
+            <div class="basket-total__result skeleton">
                 <span>
                     <span data-el="items-counter" data-type="with-word"></span>:
                 </span>
@@ -25,7 +25,7 @@ if ($page === 'Корзина') {
             </div>
             <span class="divider"></span>
 
-            <div class="basket-total__result basket-total__result--discount">
+            <div class="basket-total__result basket-total__result--discount skeleton">
                 <span>Скидка:</span>
                 <span>
                     <span data-el="total-discount">0</span> ₽
@@ -33,7 +33,7 @@ if ($page === 'Корзина') {
             </div>
             <span class="divider"></span>
 
-            <div class="basket-total__result basket-total__result--summary">
+            <div class="basket-total__result basket-total__result--summary skeleton">
                 <span>Итого:</span>
                 <span>
                     <span data-el="total-sum">0</span> ₽

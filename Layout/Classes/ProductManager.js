@@ -180,6 +180,8 @@ class ProductManager {
         } catch (error) {
             console.error('[ProductManager] Ошибка рендеринга:', error);
             this.showError('Ошибка отображения товаров');
+        } finally {
+            SkeletonManager.hide();
         }
     }
 
