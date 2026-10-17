@@ -51,7 +51,7 @@ if (!preg_match('/^[A-Za-z0-9_-]{3,32}$/', $code)) {
 }
 
 $validPromocodes = [
-    'GROWTASK2026'  => ['discount' => 50, 'type' => 'percent', 'message' => 'Скидка 10% применена'],
+    'GROWTASK2026'  => ['discount' => 50, 'type' => 'percent', 'message' => 'Скидка 50% применена'],
     'DISCOUNT'  => ['discount' => 100, 'type' => 'percent', 'message' => 'Скидка 100% применена'],
 ];
 

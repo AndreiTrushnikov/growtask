@@ -1888,3 +1888,7 @@ textarea {
 .entered-promocode[hidden] {
     display: none;
 }
+
+.promocode-error {
+    border: 2px solid var(--states-error--darker) !important;
+}

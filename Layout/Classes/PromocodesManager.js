@@ -26,6 +26,9 @@ class PromocodesManager {
                 return el;
             })();
 
+        this.storageKey = options.storageKey || 'applied_promocode';
+        this.onApplied   = typeof options.onApplied === 'function' ? options.onApplied : null;
+
         this.url = options.url || '/api/promocode-check.php'
     }
 
@@ -36,6 +39,7 @@ class PromocodesManager {
      */
     init() {
         this.addEventListeners();
+        this.restorePromocode();
     }
 
 
@@ -55,7 +59,13 @@ class PromocodesManager {
 
         // Снимаем класс ошибки при вводе
         this.input.addEventListener('input', () => {
-            this.input.classList.remove('is-invalid');
+            this.input.classList.remove('promocode-error');
+
+            const value = this.input.value.trim().toLowerCase();
+            const saved = this.getSavedPromocode();
+            if (saved && value && value === saved.code.toLowerCase()) {
+                this.input.classList.add('promocode-error');
+            }
         });
     }
 
@@ -98,13 +108,18 @@ class PromocodesManager {
      */
     handleResponse(result, code) {
         if (result.success) {
-            console.log('✅ Промокод применён:', result);
+            console.log('Промокод применён:', result);
+            this.savePromocode(code, result);
             this.renderPromocode(code, 'success');
-            // здесь можно сохранить скидку: localStorage.setItem(...)
+            if (this.onApplied) {
+                this.onApplied({
+                    code, ...result
+                });
+            }
         } else {
-            console.warn('❌ Промокод отклонён:', result.message);
+            console.warn('Промокод отклонён:', result.message);
             this.renderPromocode(code, 'error');
-            this.input.classList.add('is-invalid');
+            this.input.classList.add('promocode-error');
         }
     }
 
@@ -151,10 +166,12 @@ class PromocodesManager {
         this.enteredPromocode.hidden = true;
         this.enteredPromocode.innerHTML = '';
 
+        this.removeSavedPromocode();
+
         this.input.hidden = false;
         this.submitBtn.hidden = false;
         this.input.value = '';
-        this.input.classList.remove('is-invalid');
+        this.input.classList.remove('promocode-error');
         this.input.focus();
     }
 
@@ -166,11 +183,17 @@ class PromocodesManager {
      */
     async onSubmit() {
         const promocode = this.input.value.trim();
-        this.input.classList.remove('is-invalid');
+        this.input.classList.remove('promocode-error');
 
         if (!promocode) {
-            this.input.classList.add('is-invalid');
+            this.input.classList.add('promocode-error');
             this.input.focus();
+            return;
+        }
+
+        const saved = this.getSavedPromocode();
+        if (saved && saved.code.toLowerCase() === promocode.toLowerCase()) {
+            this.renderPromocode(saved.code, 'success');
             return;
         }
 
@@ -190,4 +213,68 @@ class PromocodesManager {
         }
     }
 
+
+
+    /**
+     * Сохранить применённый промокод.
+     */
+    savePromocode(code, result) {
+        try {
+            localStorage.setItem(this.storageKey, JSON.stringify({
+                code,
+                discount: result.discount ?? null,
+                type: result.type ?? null,
+                message: result.message ?? '',
+            }));
+        } catch (e) {
+            console.warn('Не удалось сохранить промокод:', e);
+        }
+    }
+
+
+
+    /**
+     * Получить сохранённый промокод.
+     * @returns {{code: string, discount?: number|null, type?: string|null, message?: string}|null}
+     */
+    getSavedPromocode() {
+        try {
+            const raw = localStorage.getItem(this.storageKey);
+            if (!raw) return null;
+
+            const data = JSON.parse(raw);
+            return data && data.code ? data : null;
+        } catch (e) {
+            return null;
+        }
+    }
+
+
+
+    /**
+     * Удалить сохранённый промокод.
+     */
+    removeSavedPromocode() {
+        try {
+            localStorage.removeItem(this.storageKey);
+        } catch (e) {
+        }
+    }
+
+
+
+    /**
+     * Восстановить промокод из хранилища при загрузке страницы.
+     */
+    restorePromocode() {
+        const saved = this.getSavedPromocode();
+        if (!saved) return;
+
+        this.renderPromocode(saved.code, 'success');
+
+        // Колбэк при загрузке страницы
+        if (this.onApplied) {
+            this.onApplied(saved);
+        }
+    }
 }
