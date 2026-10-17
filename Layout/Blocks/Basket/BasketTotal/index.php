@@ -41,8 +41,8 @@ if ($page === 'Корзина') {
             </div>
             <span class="divider"></span>
         </div>
-        <a href="/order/" class="btn btn--accent btn--high w-100" data-el="to-order-btn">
-            <?if ($page === 'Корзина') { ?>
+        <?if ($page === 'Корзина') { ?>
+            <a href="/order/" class="btn btn--accent btn--high w-100" data-el="to-order-btn">
                 <span>К оформлению</span>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M5.00023 10.9999L16.5862 10.9999L11.2932 5.70696C10.9027 5.31643 10.9027 4.68342 11.2932 4.29289C11.6837
@@ -51,10 +51,12 @@ if ($page === 'Корзина') {
                     18.2929L16.5862 12.9999L5.00023 12.9999C4.44795 12.9999 4.00023 12.5522 4.00023 11.9999C4.00023 11.4476 4.44795
                     10.9999 5.00023 10.9999Z" fill="white"/>
                 </svg>
-            <? } else { ?>
+            </a>
+        <? } else { ?>
+            <button  class="btn btn--accent btn--high w-100" type="submit" form="order-form">
                 <span>Оформить заказ</span>
-            <? } ?>
-        </a>
+            </button>
+        <? } ?>
     </div>
 
     <div class="accordion">
