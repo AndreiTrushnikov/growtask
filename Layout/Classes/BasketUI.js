@@ -32,7 +32,7 @@ class BasketUI {
 
     /**
      * Обновление счётчика корзины
-     * @param {number} count - Количество товаров
+     * @param {number} count - Общее количество товаров
      */
     updateCounter(count) {
         this.counterElements.forEach(el => {
@@ -50,6 +50,8 @@ class BasketUI {
 
     /**
      * Обновление количества у одного товара
+     * @param {string|number} productId - ID товара
+     * @param {number} quantity - количество позиций определённого товара
      */
     updateQuantity(productId, quantity) {
         document.getElementById(productId).querySelector('[data-el="item-quantity"]').value = quantity;
@@ -59,7 +61,7 @@ class BasketUI {
 
     /**
      * Удаление элемента со страницы
-     * @param productId
+     * @param {string|number} productId - ID товара
      */
     removeFromDom(productId) {
         if (!document.getElementById(productId)) return;
@@ -68,15 +70,20 @@ class BasketUI {
     }
 
 
-
     /**
      * Обновление тотал суммы у одного товара
+     * @param {string|number} productId - ID товара
+     * @param {{}} item
      */
     updateBasketItemTotalSum(productId, item) {
         document.getElementById(productId).querySelector(this.basketItemTotalSumSelector).textContent = item.price * item.quantity;
     }
 
 
+    /**
+     * Обновляет визуально финальные цены в корзине и миникорзине
+     * @param {{}} sums
+     */
     updateTotalSums(sums) {
         document.querySelectorAll(this.totalSumWithoutDiscountSelector).forEach(el => {
             el.textContent = sums.totalSumWithoutDiscount;
@@ -89,6 +96,10 @@ class BasketUI {
         })
     }
 
+
+    /**
+     * Тогглит дизейбл у кнопки перехода на страницу заказа
+     */
     toggleOrderPossibility() {
         document.querySelector(this.toOrderBtnSelector).classList.toggle(this.disableSelector);
     }

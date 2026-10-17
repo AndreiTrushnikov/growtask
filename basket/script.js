@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Создаём инстанс менеджера по работе с корзиной в localstorage
+    // Инстанс менеджера по работе с корзиной в localstorage
     const basketManager = new BasketManager({
         storageKey: 'products_data',
         onUpdateCallback: () => {
@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
     });
 
-    // Работа с менеджером загрузки товаров
+    // Инстанс менеджером загрузки товаров
     const productManager = new ProductManager({
         containerId: 'basket-items',
         apiEndpoint: '/api/get-products.php',
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     productManager.init();
     window.productManager = productManager;
 
-    // Работа с корзиной
+    // Инстанс менеджера по работе с DOM корзины
     const basketUI = new BasketUI({
         counterSelector: '[data-el="items-counter"]',
         basketItemTotalSumSelector: '[data-el="basket-item-total-sum"]',
@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
     basketUI.init();
     window.basketUI = basketUI;
 
+    // Инстанс менеджера чекбоксов - вероятно, стоит убрать внутрь basketManager
     const listingManager = new ListingManager({
         basketItemCheckboxSelector: '[data-el="basket-item-checkbox"]',
     })

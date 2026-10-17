@@ -107,8 +107,11 @@ class ProductManager {
         }
     }
 
+
+
     /**
      * Загрузка товаров из API
+     * @returns {Promise<void>}
      */
     async loadProductsFromApi() {
         try {
@@ -180,8 +183,10 @@ class ProductManager {
         }
     }
 
+
+
     /**
-     * Отображение состояния загрузки
+     * Показывает уведомление о загрузке элементов корзины
      */
     showLoading() {
         if (this.container) {
@@ -189,8 +194,10 @@ class ProductManager {
         }
     }
 
+
+
     /**
-     * Отображение ошибки
+     * Показывает строку с ошибкой
      * @param {string} message - Текст ошибки
      */
     showError(message) {

@@ -21,6 +21,11 @@ class OrderManager {
         this.container = null;
     }
 
+
+    /**
+     * Инициализация
+     * @returns {Promise<void>}
+     */
     async init() {
         this.container = document.getElementById(this.containerId);
 
@@ -45,9 +50,10 @@ class OrderManager {
         }
     }
 
+
     /**
      * Читает данные из localStorage.
-     * @returns {Array}
+     * @returns {*[]|any|null}
      */
     getFromLocalStorage() {
         try {
@@ -61,8 +67,11 @@ class OrderManager {
         }
     }
 
+
     /**
      * Рендер корзины через PHP-шаблон.
+     * @param items
+     * @returns {Promise<void>}
      */
     async renderCheckout(items) {
         try {
@@ -90,14 +99,27 @@ class OrderManager {
         }
     }
 
+
+    /**
+     * Показывает уведомление о загрузке элементов корзины
+     */
     showLoading() {
         if (this.container) this.container.innerHTML = '<p>Загрузка корзины...</p>';
     }
 
+
+    /**
+     * Показывает уведомление, если корзина пуста
+     */
     showEmpty() {
         if (this.container) this.container.innerHTML = '<p>Корзина пуста</p>';
     }
 
+
+    /**
+     * Показывает строку с ошибкой
+     * @param {string} message - Текст ошибки
+     */
     showError(message) {
         if (this.container) this.container.innerHTML = `<p>${message}</p>`;
     }

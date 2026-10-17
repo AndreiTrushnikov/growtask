@@ -60,7 +60,7 @@ class BasketManager {
             localStorage.setItem(this.storageKey, JSON.stringify(this.items));
             console.log('[BasketManager] Корзина сохранена в localStorage');
 
-            // Вызываем callback при изменении
+            // Вызываем callback при обновлении
             if (this.onUpdateCallback && typeof this.onUpdateCallback === 'function') {
                 this.onUpdateCallback(this.items);
             }
@@ -170,6 +170,12 @@ class BasketManager {
         })
     }
 
+
+
+    /**
+     * Возвращает вычисленную сумму всей корзины без скидки
+     * @returns {number}
+     */
     recalculateTotalSumWithoutDiscount() {
         return this.items.reduce((sum, item) => {
             if (item.price !== null && item.quantity !== null) {
@@ -179,6 +185,12 @@ class BasketManager {
         }, 0);
     }
 
+
+
+    /**
+     * Возвращает вычисленную сумму скидки всей корзины
+     * @returns {number}
+     */
     recalculateTotalDiscount() {
         return this.items.reduce((sum, item) => {
             if (item.old_price !== null && item.price !== null && item.quantity !== null) {
@@ -188,6 +200,12 @@ class BasketManager {
         }, 0)
     }
 
+
+
+    /**
+     * Возвращает вычисленную сумму всей корзины СО скидкой
+     * @returns {{totalSum: number, totalSumWithoutDiscount: number, discount: number}}
+     */
     recalculateTotalSum() {
         let sum = {
             totalSumWithoutDiscount: this.recalculateTotalSumWithoutDiscount(),

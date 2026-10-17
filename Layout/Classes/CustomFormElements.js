@@ -8,6 +8,9 @@ class CustomFormElements {
         this.customLabels = document.querySelectorAll('.custom-label');
     }
 
+    /**
+     * Инициализация
+     */
     init () {
         if (this.customLabels) {
             this.customLabels.forEach((label) => {
