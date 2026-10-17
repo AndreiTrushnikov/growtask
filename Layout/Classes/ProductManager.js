@@ -129,6 +129,9 @@ class ProductManager {
             // Удаляем нулевые остатки
             dataResult.data = this.deleteZeroItems(dataResult.data);
 
+            // Добавляем лимиты товаров
+            dataResult.data = this.addLimits(dataResult.data);
+
             // Сохраняем в localStorage
             this.saveToLocalStorage(dataResult.data);
             this.cachedData = dataResult.data;
@@ -144,6 +147,14 @@ class ProductManager {
         }
     }
 
+
+
+    addLimits(items) {
+        return items.map(item => ({
+            ...item,
+            limit: item.quantity
+        }));
+    }
 
 
     /**

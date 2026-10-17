@@ -141,7 +141,7 @@ class BasketManager {
      */
     increment(productId) {
         const item = this.items.find(item => item.id === productId);
-        if (item) {
+        if (item && item.quantity < item.limit) {
             return this.updateQuantity(productId, item.quantity + 1);
         }
         return false;
