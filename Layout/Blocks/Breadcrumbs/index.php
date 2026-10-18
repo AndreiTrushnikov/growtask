@@ -31,6 +31,23 @@
                         <span class="breadcrumbs-list__item-link breadcrumbs-list__item-link--current" itemprop="name">Оформление заказа</span>
                         <meta itemprop="position" content="3" />
                     </li>
+                <? } else if ($page === 'Успешный заказ') { ?>
+                <li class="breadcrumbs-list__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <a href="/basket/" class="breadcrumbs-list__item-link" itemprop="item">
+                        <span itemprop="name">Корзина</span>
+                    </a>
+                    <meta itemprop="position" content="2" />
+                </li>
+                    <li class="breadcrumbs-list__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <a href="/order/" class="breadcrumbs-list__item-link" itemprop="item">
+                            <span itemprop="name">Оформление заказа</span>
+                        </a>
+                        <meta itemprop="position" content="3" />
+                    </li>
+                <li class="breadcrumbs-list__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <span class="breadcrumbs-list__item-link breadcrumbs-list__item-link--current" itemprop="name">Статус заказа</span>
+                    <meta itemprop="position" content="4" />
+                </li>
                 <? } ?>
             </ol>
         </nav>
