@@ -24,6 +24,7 @@ class OrderManager {
         this.orderKey = options.orderKey || 'order_data';
         this.formID = options.formID || 'order-form';
         this.preloader = options.preloader || null;
+        this.items = [];
 
         this.afterRenderCallback = options.afterRenderCallback || null;
         this.onSuccessCallback = options.onSuccessCallback || null;
@@ -59,12 +60,12 @@ class OrderManager {
 
         if (this.container) {
             this.showLoading();
-            const items = this.getFromLocalStorage();
+            this.items = this.getFromLocalStorage();
 
-            if (!items || !items.length) {
+            if (!this.items || !this.items.length) {
                 this.showEmpty();
             } else {
-                await this.renderCheckout(items);
+                await this.renderCheckout(this.items);
             }
         }
 
@@ -219,6 +220,11 @@ class OrderManager {
      * @param {Event} e
      * @returns {Promise<void>}
      */
+    /**
+     * Отправка формы. Вызывается из onSuccess JustValidate.
+     * @param {Event} e
+     * @returns {Promise<void>}
+     */
     async onSubmit(e) {
         const form = e.target;
         const submitBtn = form.querySelector('[type="submit"]');
@@ -231,24 +237,40 @@ class OrderManager {
 
         try {
             this.preloader.show();
-            const formData = new FormData(form);
+
+            // Собираем поля формы в URLSearchParams (application/x-www-form-urlencoded)
+            const params = new URLSearchParams();
+
+            for (const [key, value] of new FormData(form).entries()) {
+                params.append(key, value);
+            }
 
             const items = this.getFromLocalStorage() || [];
-            formData.set('items', JSON.stringify(items));
+            params.set('items', JSON.stringify(items));
 
             const response = await fetch(this.submitEndpoint, {
                 method: 'POST',
-                body: formData,
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+                },
+                body: params.toString(),
             });
 
-            // Обработка разных ошибок
+            // Обработка HTTP-ошибок
             if (!response.ok) {
                 let payload = null;
                 try { payload = await response.json(); } catch { /* not json */ }
                 throw Object.assign(new Error(`HTTP ${response.status}`), { payload });
             }
 
-            const result = await response.json();
+            let result;
+            try {
+                result = await response.json();
+            } catch (parseError) {
+                // Если сервер вернул не JSON (например, HTML-страницу ошибки)
+                const text = await response.text().catch(() => '');
+                throw new Error(`Некорректный ответ сервера (не JSON): ${text.slice(0, 200)}`);
+            }
 
             if (!result.success) {
                 throw new Error(result.error || 'Ошибка сервера');
@@ -275,6 +297,7 @@ class OrderManager {
             }
         }
     }
+
 
 
     /**
